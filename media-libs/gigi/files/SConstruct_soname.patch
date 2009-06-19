@@ -1,0 +1,14 @@
+Index: SConstruct
+===================================================================
+--- SConstruct	(revision 702)
++++ SConstruct	(working copy)
+@@ -128,6 +128,9 @@
+     'have_png',
+     'have_tiff'
+     ]
++
++env.Append(LINKFLAGS=['-Wl,-soname,libGiGi.0.6.0.so'])
++
+ if not force_configure:
+     try:
+         f = open('gigi_config.cache', 'r')

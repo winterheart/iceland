@@ -1,0 +1,46 @@
+--- trunk/GG/SConstruct	2007/08/29 22:33:24	621
++++ trunk/GG/SConstruct	2008/03/31 23:32:57	644
+@@ -193,7 +193,7 @@
+         for key, value in pickled_values.items():
+             sdl_env[key] = value
+         sdl_preconfigured = True
+-        if not sdl_env['sdl_driver']:
++        if not sdl_env['build_sdl_driver']:
+             print 'Warning: You have requested to build SDL support, but SDL was not found, and so has been disabled.  To fix this, run scons configure.'
+             env['build_sdl_driver'] = False
+     except Exception:
+@@ -274,6 +274,7 @@
+         else:
+             print 'Configuring unknown system (assuming the system is POSIX-like) ...'
+ 
++        signals_namespace = 'signals'
+         if OptionValue('boost_signals_namespace', env):
+             signals_namespace = OptionValue('boost_signals_namespace', env)
+             env.Append(CPPDEFINES = [
+@@ -282,7 +283,7 @@
+                 ])
+ 
+         boost_libs = [
+-            ('boost_signals', 'boost/signals.hpp', 'boost::signals::connection();'),
++            ('boost_signals', 'boost/signals.hpp', 'boost::' + signals_namespace + '::connection();'),
+             ('boost_filesystem', 'boost/filesystem/operations.hpp', 'boost::filesystem::initial_path();'),
+             ('boost_thread', 'boost/thread/thread.hpp', 'boost::thread::yield();')
+             ]
+--- trunk/GG/build_support.py	2007/08/26 17:01:52	611
++++ trunk/GG/build_support.py	2008/03/29 05:39:39	642
+@@ -88,10 +88,11 @@
+     for flag in env['LINKFLAGS']:
+         pc_file_link_flags_used.append(flag)
+         values['gigi_libs'] += ' ' + (flag[0] != '$' and flag or env.subst(flag))
+-    for path in env['LIBPATH']:
+-        if path.find('SDL') == -1: # if it's not SDL-specific, include it
+-            pc_file_lib_paths_used.append(path)
+-            values['gigi_libs'] += ' -L' + (path[0] != '$' and path or env.subst(path))
++    if env.has_key('LIBPATH'):
++        for path in env['LIBPATH']:
++            if path.find('SDL') == -1: # if it's not SDL-specific, include it
++                pc_file_lib_paths_used.append(path)
++                values['gigi_libs'] += ' -L' + (path[0] != '$' and path or env.subst(path))
+     for path in env['CPPPATH']:
+         if path.find('boost') != -1 and path[0] != '#' and path not in pc_file_paths_used:
+             pc_file_paths_used.append(path)
