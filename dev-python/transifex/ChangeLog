@@ -4,5 +4,9 @@
 
   20 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
   transifex-0.6.ebuild, transifex-9999.ebuild:
+  USE-flags for correct installation
+
+  20 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  transifex-0.6.ebuild, transifex-9999.ebuild:
   fixing dep for contact_form, thanks to krigstask for help and debugging
 

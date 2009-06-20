@@ -15,21 +15,25 @@ EHG_REPO_URI="http://code.transifex.org/mainline"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
-IUSE="subversion"
-DEPEND="dev-python/setuptools"
+IUSE="mysql sqlite postgres subversion"
+DEPEND="dev-python/setuptools
+	mysql? ( dev-python/django[mysql] )
+	sqlite? ( dev-python/django[sqlite] )
+	postgres? ( dev-python/django[postgres] )"
+# spinx is really useless unless USE="doc", I will fix it later
 RDEPEND=">=dev-python/django-1.0
-	>=dev-python/pygments-0.9
-	=dev-python/django-contact-form-9999
 	dev-python/django-authopenid
+	=dev-python/django-contact-form-9999
 	dev-python/django-evolution
 	>=dev-python/django-notification-0.1.2
 	>=dev-python/django-pagination-1.0.5
 	dev-python/django-tagging
 	dev-python/django-profile
+	>=dev-python/pygments-0.9
 	dev-python/sphinx
+	dev-python/urlgrabber
 	sys-devel/gettext
 	subversion? ( dev-python/pysvn )"
-#	dev-python/urlgrabber
 
 S="${WORKDIR}"/mainline
 
