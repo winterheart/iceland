@@ -1,0 +1,8 @@
+# ChangeLog for dev-python/transifex
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  20 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  transifex-0.6.ebuild, transifex-9999.ebuild:
+  fixing dep for contact_form, thanks to krigstask for help and debugging
+

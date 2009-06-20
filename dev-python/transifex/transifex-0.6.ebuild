@@ -16,7 +16,7 @@ IUSE=""
 DEPEND="dev-python/setuptools"
 RDEPEND=">=dev-python/django-1.0
 	>=dev-python/pygments-0.9
-	>=dev-python/django-contact-form-0.3
+	=dev-python/django-contact-form-9999
 	dev-python/django-authopenid
 	dev-python/django-evolution
 	>=dev-python/django-notification-0.1.2
