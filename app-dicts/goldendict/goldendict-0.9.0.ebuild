@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit qt4
-
 EAPI="2"
+
+inherit qt4
 
 DESCRIPTION="Feature-rich dictionary lookup program"
 HOMEPAGE="http://goldendict.berlios.de/"
