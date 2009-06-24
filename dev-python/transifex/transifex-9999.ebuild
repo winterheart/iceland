@@ -5,7 +5,7 @@
 
 EAPI="2"
 
-inherit distutils mercurial
+inherit mercurial
 
 DESCRIPTION="A platform for distributed translation submissions"
 HOMEPAGE="http://transifex.org/"
@@ -15,11 +15,13 @@ EHG_REPO_URI="http://code.transifex.org/mainline"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
+
 IUSE="mysql sqlite postgres subversion"
 DEPEND="dev-python/setuptools
 	mysql? ( dev-python/django[mysql] )
 	sqlite? ( dev-python/django[sqlite] )
 	postgres? ( dev-python/django[postgres] )"
+
 # spinx is really useless unless USE="doc", I will fix it later
 RDEPEND=">=dev-python/django-1.0
 	dev-python/django-authopenid
@@ -30,6 +32,8 @@ RDEPEND=">=dev-python/django-1.0
 	dev-python/django-tagging
 	dev-python/django-profile
 	>=dev-python/pygments-0.9
+	dev-python/markdown
+	dev-python/polib
 	dev-python/sphinx
 	dev-python/urlgrabber
 	sys-devel/gettext
@@ -37,17 +41,23 @@ RDEPEND=">=dev-python/django-1.0
 
 S="${WORKDIR}"/mainline
 
-src_prepare() {
-	epatch "${FILESDIR}"/setup.py.patch || die "epatch failed"
-}
-
-#src_install() {
-#	distutils_python_version
-#	local site_pkg="/usr/$(get_libdir)/python${PYVER}/site-packages/transifex/"
-#	export PYTHONPATH="${PYTHONPATH}:${D}/${site_pkg}"
-#	dodir ${site_pkg}
-#	distutils_src_install
+# In future it may help
+#src_prepare() {
+#	epatch "${FILESDIR}"/setup.py.patch || die "epatch failed"
 #}
+
+src_install() {
+# This is wierd installation, but I don't know how handle with them
+# Coontact me if you have better way
+	insinto /etc/transifex
+	doins -r transifex/settings/*
+	rm -fr transifex/settings
+	dodir /var/lib/transifex
+	cp -r transifex/* "${D}"/var/lib/transifex
+	dosym /etc/transifex /var/lib/transifex/settings
+
+	dodoc README
+}
 
 pkg_postinst() {
 	einfo

@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  transifex-0.6.ebuild, transifex-9999.ebuild, +metadata.xml:
+  Rewrite installation
+
+  24 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  transifex-0.6.ebuild, transifex-9999.ebuild:
+  some addition dependencies
+
   20 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
   transifex-0.6.ebuild, transifex-9999.ebuild:
   USE-flags for correct installation
