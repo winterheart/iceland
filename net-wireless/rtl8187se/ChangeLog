@@ -4,9 +4,5 @@
 
   24 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
   -rtl8187se-04.ebuild, +metadata.xml:
-  QA fix
-
-  24 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
-  -rtl8187se-04.ebuild:
-  Removing old stuff
+  QA fix; removing old stuff
 
