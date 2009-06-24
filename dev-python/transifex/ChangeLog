@@ -3,6 +3,10 @@
 # $Header: $
 
   24 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  transifex-9999.ebuild:
+  Refactoring src_install. Again
+
+  24 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
   transifex-0.6.ebuild, transifex-9999.ebuild, +metadata.xml:
   Rewrite installation
 

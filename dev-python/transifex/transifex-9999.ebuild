@@ -5,7 +5,7 @@
 
 EAPI="2"
 
-inherit mercurial
+inherit distutils mercurial multilib
 
 DESCRIPTION="A platform for distributed translation submissions"
 HOMEPAGE="http://transifex.org/"
@@ -42,21 +42,23 @@ RDEPEND=">=dev-python/django-1.0
 S="${WORKDIR}"/mainline
 
 # In future it may help
-#src_prepare() {
-#	epatch "${FILESDIR}"/setup.py.patch || die "epatch failed"
-#}
+src_prepare() {
+	# Own directory
+	epatch "${FILESDIR}"/setup.py.patch || die "epatch failed"
+	# Adding .py to installation
+	echo "recursive-include transifex *.py" >> "${S}"/MANIFEST.in
+}
 
 src_install() {
+	distutils_src_install
+
 # This is wierd installation, but I don't know how handle with them
 # Coontact me if you have better way
 	insinto /etc/transifex
 	doins -r transifex/settings/*
-	rm -fr transifex/settings
-	dodir /var/lib/transifex
-	cp -r transifex/* "${D}"/var/lib/transifex
-	dosym /etc/transifex /var/lib/transifex/settings
-
-	dodoc README
+	rm -fr "${D}"/usr/$(get_libdir)/python${PYVER}/site-packages/transifex/settings
+	dosym /etc/transifex /usr/$(get_libdir)/python${PYVER}/site-packages/transifex/settings
+	fperms 0755	/usr/$(get_libdir)/python${PYVER}/site-packages/transifex/manage.py
 }
 
 pkg_postinst() {
