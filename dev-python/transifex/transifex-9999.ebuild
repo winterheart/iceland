@@ -52,13 +52,17 @@ src_prepare() {
 src_install() {
 	distutils_src_install
 
-# This is wierd installation, but I don't know how handle with them
-# Coontact me if you have better way
 	insinto /etc/transifex
 	doins -r transifex/settings/*
 	rm -fr "${D}"/usr/$(get_libdir)/python${PYVER}/site-packages/transifex/settings
 	dosym /etc/transifex /usr/$(get_libdir)/python${PYVER}/site-packages/transifex/settings
 	fperms 0755	/usr/$(get_libdir)/python${PYVER}/site-packages/transifex/manage.py
+
+	rm -fr "${D}"/usr/templates
+	# There should be fperm for properly saving
+	keepdir /var/lib/transifex/scratchdir
+	dodir /var/lib/transifex/scratchdir/{msgmerge_files,sources}
+	dodir /var/lib/transifex/scratchdir/sources/{bzr,cvs,git,hg,svn,tar}
 }
 
 pkg_postinst() {
