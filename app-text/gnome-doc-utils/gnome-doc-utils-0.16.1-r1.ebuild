@@ -37,9 +37,14 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-0.16.1-fhs.patch"
 	# Fix problem with attribute translation
 	epatch "${FILESDIR}/${P}-attribute-fix.patch"
-
 	# If there is a need to reintroduce eautomake or eautoreconf, make sure
 	# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
+}
+
+src_install() {
+	emake DESTDIR="${D}" install || die "emake install failed"
+	# Add GuideXML support
+	cp "${FILESDIR}"/guide.py "${D}"/$(python_get_sitedir)/xml2po || die "Cant"
 }
 
 pkg_postinst() {
