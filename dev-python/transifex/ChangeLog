@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jul 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  transifex-9999.ebuild:
+  dep authority for transifex
+
   26 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
   -transifex-0.6.ebuild, transifex-9999.ebuild:
   Cleanup of rest, removing old (buggy) version

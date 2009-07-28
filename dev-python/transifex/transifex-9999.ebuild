@@ -24,6 +24,7 @@ DEPEND="dev-python/setuptools
 
 # spinx is really useless unless USE="doc", I will fix it later
 RDEPEND=">=dev-python/django-1.0
+	dev-python/django-authority
 	dev-python/django-authopenid
 	=dev-python/django-contact-form-9999
 	dev-python/django-evolution
