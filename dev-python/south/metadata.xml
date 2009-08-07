@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer>
+<email>winterheart@gentoo.ru</email>
+<name>Azamat H. Hackimov</name>
+</maintainer>
+<herd></herd>
+<longdescription lang="en">
+South provides intelligent schema migrations for Django apps.
+</longdescription>
+</pkgmetadata>
+
