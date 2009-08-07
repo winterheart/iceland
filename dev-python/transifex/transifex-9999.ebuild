@@ -27,7 +27,6 @@ RDEPEND=">=dev-python/django-1.0
 	dev-python/django-authority
 	dev-python/django-authopenid
 	=dev-python/django-contact-form-9999
-	dev-python/django-evolution
 	>=dev-python/django-notification-0.1.2
 	>=dev-python/django-pagination-1.0.5
 	dev-python/django-tagging
@@ -36,6 +35,7 @@ RDEPEND=">=dev-python/django-1.0
 	dev-python/markdown
 	dev-python/polib
 	dev-python/sphinx
+	dev-python/south
 	dev-python/urlgrabber
 	sys-devel/gettext
 	subversion? ( dev-python/pysvn )"
