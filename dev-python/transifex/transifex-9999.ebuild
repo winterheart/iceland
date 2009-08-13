@@ -18,37 +18,30 @@ SLOT="0"
 
 IUSE="mysql sqlite postgres subversion"
 DEPEND="dev-python/setuptools
-	mysql? ( dev-python/django[mysql] )
-	sqlite? ( dev-python/django[sqlite] )
-	postgres? ( dev-python/django[postgres] )"
+	dev-python/django[mysql?,sqlite?,postgres?]
+	>=dev-python/sphinx-0.4.2"
 
 # spinx is really useless unless USE="doc", I will fix it later
+# django-contact-form - hg 97559a887345 or newer
 RDEPEND=">=dev-python/django-1.0
 	dev-python/django-authority
-	dev-python/django-authopenid
 	=dev-python/django-contact-form-9999
 	>=dev-python/django-notification-0.1.2
 	>=dev-python/django-pagination-1.0.5
-	dev-python/django-tagging
+	dev-python/django-piston
+	>=dev-python/django-tagging-0.3
 	dev-python/django-profile
-	>=dev-python/pygments-0.9
+	dev-python/httplib2
+	>=dev-python/imaging-1.1.6
 	dev-python/markdown
-	dev-python/polib
-	dev-python/sphinx
-	dev-python/south
+	>=dev-python/polib-0.4.2
+	>=dev-python/pygments-0.9
+	>=dev-python/south-0.6
 	dev-python/urlgrabber
 	sys-devel/gettext
 	subversion? ( dev-python/pysvn )"
 
 S="${WORKDIR}"/mainline
-
-# In future it may help
-src_prepare() {
-	# Own directory
-	epatch "${FILESDIR}"/setup.py.patch || die "epatch failed"
-	# Adding .py to installation
-	echo "recursive-include transifex *.py" >> "${S}"/MANIFEST.in
-}
 
 src_install() {
 	distutils_src_install
@@ -67,6 +60,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo
+	echo
+	einfo "For installation and updating instructions please refer"
+	einfo "http://docs.transifex.org/intro/install.html"
+	echo
 }
 
