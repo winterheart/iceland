@@ -1,0 +1,10 @@
+# ChangeLog for games-misc/fortune-mod-lor
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*fortune-mod-lor-9999 (20 Aug 2009)
+
+  20 Aug 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  +fortune-mod-lor-9999.ebuild, +metadata.xml:
+  Quotes from Linux.Org.Ru
+
