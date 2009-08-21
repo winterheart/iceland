@@ -22,6 +22,7 @@ src_unpack() {
 }
 
 src_compile() {
+	sed -i -e 's/\&lt;/\</'g "${S}"/lor || die sed failed
 	if use unicode ; then
 		iconv --from-code koi8-r --to-code utf8 -o lor.utf8 lor || die "iconv failed"
 		mv lor.utf8 lor
