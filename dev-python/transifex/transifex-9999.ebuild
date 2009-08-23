@@ -16,7 +16,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
-IUSE="mysql sqlite postgres subversion"
+IUSE="doc mysql sqlite postgres subversion"
 DEPEND="dev-python/setuptools
 	dev-python/django[mysql?,sqlite?,postgres?]
 	>=dev-python/sphinx-0.4.2"
@@ -43,6 +43,16 @@ RDEPEND=">=dev-python/django-1.0
 
 S="${WORKDIR}"/mainline
 
+src_compile() {
+	distutils_src_compile
+
+	if use doc; then
+		cd docs
+		PYTHONPATH=.. emake SPHINXBUILD=sphinx-build html \
+			|| die "emake html failed"
+	fi
+}
+
 src_install() {
 	distutils_src_install
 
@@ -57,6 +67,9 @@ src_install() {
 	keepdir /var/lib/transifex/scratchdir
 	dodir /var/lib/transifex/scratchdir/{msgmerge_files,sources}
 	dodir /var/lib/transifex/scratchdir/sources/{bzr,cvs,git,hg,svn,tar}
+	if use doc ; then
+		dohtml -r docs/html/* || die "dohtml failed"
+	fi
 }
 
 pkg_postinst() {
