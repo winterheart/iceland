@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>games</herd>
+<maintainer>
+<email>winterheart@gentoo.ru</email>
+<name>Azamat H. Hackimov</name>
+</maintainer>
+<use>
+	<flag name="editor">Add support for level editor</flag>
+	<flag name="extras">Add support for additional graphic themes</flag>
+</use>
+<longdescription lang="en">
+Arcade 2D Puzzle Game
+</longdescription>
+</pkgmetadata>
+
