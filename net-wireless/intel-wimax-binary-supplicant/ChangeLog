@@ -4,6 +4,10 @@
 
   06 Sep 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
   intel-wimax-binary-supplicant-1.4.0.ebuild:
+  Roll back
+
+  06 Sep 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  intel-wimax-binary-supplicant-1.4.0.ebuild:
   Rewrite install
 
 *intel-wimax-binary-supplicant-1.4.0 (06 Sep 2009)
