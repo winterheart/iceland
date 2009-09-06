@@ -7,7 +7,7 @@ EAPI="2"
 MY_PN="${PN/firmware/fw}"
 MY_PV="${PV/.0}"
 
-DESCRIPTION="Intel (R) WiMAX 5150/53500 Firmware"
+DESCRIPTION="Intel (R) WiMAX 5150/5350 Firmware"
 HOMEPAGE="http://www.linuxwimax.org"
 SRC_URI="http://www.linuxwimax.org/Download?action=AttachFile&do=get&target=${MY_PN}-${PV}.tar.bz2
 -> ${MY_PN}-${PV}.tar.bz2"
