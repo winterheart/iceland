@@ -21,11 +21,21 @@ DEPEND=">=dev-libs/libnl-1.1
 	net-wireless/intel-wimax-binary-supplicant"
 RDEPEND=""
 
+S="${WORKDIR}"/WiMAX-Network-Service-${PV}
+
 src_configure() {
 	# ugly baaaad hack!!! You batrad, you know it?!
 	econf --with-i2400m=/usr/src/linux \
 		$(use_with debug) \
 		$(use_with tools) \
-		|| die "ecoonf failed"
+		|| die "econf failed"
+}
+
+src_compile() {
+	emake all || die "emake failed"
+}
+
+src_install() {
+	emake DESTDIR="${D}" install || die "install failed"
 }
 
