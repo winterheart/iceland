@@ -5,15 +5,14 @@
 
 EAPI="2"
 
-inherit distutils mercurial multilib
+inherit distutils multilib
 
 DESCRIPTION="A platform for distributed translation submissions"
-HOMEPAGE="http://transifex.org/"
-#SRC_URI="http://transifex.org/files/${P}.tar.gz"
-EHG_REPO_URI="http://code.transifex.org/mainline"
+HOMEPAGE="http://www.transifex.org/"
+SRC_URI="http://www.transifex.org/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 SLOT="0"
 
 IUSE="doc mysql sqlite postgres subversion"
@@ -41,7 +40,7 @@ RDEPEND=">=dev-python/django-1.0
 	sys-devel/gettext
 	subversion? ( dev-python/pysvn )"
 
-S="${WORKDIR}"/mainline
+#S="${WORKDIR}"/mainline
 
 src_compile() {
 	distutils_src_compile
