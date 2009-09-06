@@ -23,7 +23,15 @@ S="${WORKDIR}"/Intel-WiMAX-Binary-Supplicant-${PV}
 src_install() {
 	insinto /usr/$(get_libdir)/wimax
 	# ume or midinux???
-	doins ume/libwpa_wimax_supplicant.so.0
-	dosym /usr/$(get_libdir)/wimax/libwpa_wimax_supplicant.so.0 /usr/$(get_libdir)/wimax/libwpa_wimax_supplicant.so
+	for target in ume midinux ; do
+		if ldd "${WORKDIR}"/$target/libwpa_wimax_supplicant.so* | grep -q "not found" ; then
+			continue
+		else
+			doins ume/libwpa_wimax_supplicant.so.0
+			exit
+		fi
+	done
+#	dosym /usr/$(get_libdir)/wimax/libwpa_wimax_supplicant.so.0 /usr/$(get_libdir)/wimax/libwpa_wimax_supplicant.so
 	dodoc README
 }
+
