@@ -28,6 +28,7 @@ RDEPEND="dev-libs/libzip
 S="${WORKDIR}/${P}-src"
 
 src_prepare() {
+	epatch "${FILESDIR}"/gcc-4.4-fix.patch
 	# useless stuff
 	sed -i \
 		-e s/INSTALLS\ \+=\ desktops2//g \
