@@ -1,0 +1,22 @@
+
+dev-libs/openssl
+0
+http://linuxwimax.org/Download?action=AttachFile&do=get&target=Intel-WiMAX-Binary-Supplicant-1.4.0.tar.bz2 -> Intel-WiMAX-Binary-Supplicant-1.4.0.tar.bz2
+strip
+http://www.linuxwimax.org
+Intel-binary
+Intel WiMAX Binary Supplicant
+~x86
+multilib toolchain-funcs
+
+
+
+
+2
+
+install
+
+
+
+
+

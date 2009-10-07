@@ -1,0 +1,22 @@
+>=app-admin/eselect-python-20090804 >=app-shells/bash-3.2 virtual/python dev-util/subversion net-misc/rsync
+dev-python/imaging virtual/python
+0
+
+
+http://code.google.com/p/django-profile/
+MIT
+Generic User Profile Control Panel developed for django
+~amd64 ~x86
+distutils eutils multilib portability python subversion toolchain-funcs
+
+
+
+
+2
+
+compile install postinst postrm preinst prepare unpack
+
+
+
+
+

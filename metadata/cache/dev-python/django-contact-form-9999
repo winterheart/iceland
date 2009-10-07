@@ -1,0 +1,22 @@
+>=app-admin/eselect-python-20090804 >=app-shells/bash-3.2 virtual/python dev-util/mercurial
+virtual/python
+0
+
+
+http://bitbucket.org/ubernostrum/django-contact-form/
+BSD-2
+An extensible contact-form application for Django
+~amd64 ~x86
+distutils eutils mercurial multilib portability python toolchain-funcs
+
+
+
+
+
+
+compile install postinst postrm unpack
+
+
+
+
+

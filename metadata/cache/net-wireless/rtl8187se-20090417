@@ -1,0 +1,22 @@
+kernel_linux? ( virtual/linux-sources ) kernel_linux? ( virtual/modutils ) sys-apps/sed kernel_linux? ( virtual/linux-sources )
+kernel_linux? ( virtual/modutils )
+0
+ftp://ftp.gentoo.ru/pub/rtl8187se/rtl8187se-20090417.tar.bz2
+
+http://www.gentoo.ru
+GPL-2
+Driver for the wireless card Realtek 8187se
+~amd64 ~x86
+eutils linux-info linux-mod multilib portability toolchain-funcs versionator
+kernel_linux
+
+
+
+
+
+compile install postinst postrm preinst setup
+
+
+
+
+
