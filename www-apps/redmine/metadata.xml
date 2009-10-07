@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!-- 
+$Header: /var/cvsroot/gentoo-x86/skel.metadata.xml,v 1.17 2007/11/27 21:18:51 cardoe Exp $
+-->
+
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+  <email>winterheart@gentoo.ru</email>
+</maintainer>
+<longdescription>Flexible project management web application written using Ruby on Rails framework</longdescription>
+<use>
+  <flag name='darcs'>Support dev-util/darcs based repositories.</flag>
+  <flag name='git'>Support dev-util/git based repositories.</flag>
+  <flag name='openid'>Enable OpenID support.</flag>
+  <flag name='mercurial'>Support dev-util/mercurial based repositories.</flag>
+</use>
+</pkgmetadata>
+

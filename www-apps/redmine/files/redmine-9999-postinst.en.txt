@@ -1,0 +1,26 @@
+1. Create empty database (in this example MySQL):
+
+ create database redmine character set utf8;
+ create user 'redmine'@'localhost' identified by 'my_password';
+ grant all privileges on redmine.* to 'redmine'@'localhost';
+
+2. Edit ${VHOST_ROOT}/${P}/config/database.yml:
+
+ production:
+   adapter: mysql
+   database: redmine
+   host: localhost
+   port: 3306
+   username: redmine
+   password: my_password
+
+3. Generate a session store secret:
+
+ rake ${VHOST_ROOT}/${P}/config/initializers/session_store.rb
+
+4. Create database structure and fill it wit default data:
+ rake db:migrate RAILS_ENV="production"
+ rake redmine:load_default_data RAILS_ENV="production"
+
+5. Log in to redmine with login admin and password admin
+
