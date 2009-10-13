@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/django-ajax-selects
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*django-ajax-selects-9999 (13 Oct 2009)
+
+  13 Oct 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  +django-ajax-selects-9999.ebuild, +metadata.xml:
+  django-ajax-selects for transifex
+
