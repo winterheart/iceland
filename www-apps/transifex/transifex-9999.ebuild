@@ -24,6 +24,7 @@ DEPEND="dev-python/setuptools
 # spinx is really useless unless USE="doc", I will fix it later
 # django-contact-form - hg 97559a887345 or newer
 RDEPEND=">=dev-python/django-1.0
+	dev-python/django-ajax-selects
 	dev-python/django-authority
 	=dev-python/django-contact-form-9999
 	>=dev-python/django-notification-0.1.2
