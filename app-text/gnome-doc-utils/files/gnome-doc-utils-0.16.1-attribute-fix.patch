@@ -1,5 +1,6 @@
---- xml2po/xml2po.py.orig	2009-05-10 17:42:35.000000000 +0600
-+++ xml2po/xml2po.py	2009-05-13 20:48:57.000000000 +0600
+diff -Nuar gnome-doc-utils-0.16.1.orig/xml2po/xml2po.py gnome-doc-utils-0.16.1/xml2po/xml2po.py
+--- gnome-doc-utils-0.16.1.orig/xml2po/xml2po.py	2009-10-18 01:04:39.000000000 +0600
++++ gnome-doc-utils-0.16.1/xml2po/xml2po.py	2009-10-18 01:07:56.000000000 +0600
 @@ -51,7 +51,8 @@
          return None
  
@@ -19,6 +20,17 @@
              if self.do_translations or (not t in self.messages):
                  self.messages.append(t)
                  if spacepreserve:
+@@ -371,8 +372,8 @@
+         except libxml2.treeError:
+             pass
+ 
+-        content = '<%s>%s</%s>' % (starttag, text, endtag)
+-        tmp = tmp + content.encode('utf-8')
++        content = '<%s>%s</%s>' % (starttag, text.encode('utf-8'), endtag)
++        tmp = tmp + content
+ 
+         newnode = None
+         try:
 @@ -520,7 +521,12 @@
          if restart or worth:
              i = 0

@@ -37,7 +37,7 @@ class guideXmlMode:
 
     def getTreatedAttributes(self):
         "Returns array of tag attributes which content is to be translated"
-        return [ 'caption', 'link', 'title' ]
+        return [ 'caption', 'link', 'short', 'title' ]
 
     def getSpacePreserveTags(self):
         "Returns array of tags in which spaces are to be preserved."
