@@ -33,11 +33,11 @@ class guideXmlMode:
 
     def getFinalTags(self):
         "Returns array of tags to be considered 'final'."
-        return [ 'author', 'date', 'dd', 'dt', 'impo', 'note', 'li', 'p', 'th', 'ti', 'warn', 'version' ] 
+        return [ 'author', 'date', 'dd', 'dt', 'insert', 'impo', 'note', 'li', 'p', 'th', 'ti', 'warn', 'version' ] 
 
     def getTreatedAttributes(self):
         "Returns array of tag attributes which content is to be translated"
-        return [ 'caption', 'link', 'short', 'title' ]
+        return [ 'caption', 'lang', 'link', 'short', 'title' ]
 
     def getSpacePreserveTags(self):
         "Returns array of tags in which spaces are to be preserved."
