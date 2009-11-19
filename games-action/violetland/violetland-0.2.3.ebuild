@@ -25,17 +25,20 @@ RDEPEND="media-libs/libsdl
 DOCS="README_EN.TXT"
 S="${WORKDIR}"/${PN}-v${PV}
 
-src_configure() {
-	local mycmakeargs="-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}"
-	cmake-utils_src_configure
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-DATA_INSTALL_DIR.patch
 }
 
-src_compile() {
-	cmake-utils_src_compile
+src_configure() {
+	# It's OK, patch done all things to LHS pleased
+	local mycmakeargs="-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX} -DDATA_INSTALL_DIR=${GAMES_DATADIR}"
+	cmake-utils_src_configure
 }
 
 src_install() {
 	cmake-utils_src_install
+	newicon icon-light.png ${PN}.png
+	make_desktop_entry ${PN} VioletLand ${PN}.png
 	prepgamesdirs
 }
 
