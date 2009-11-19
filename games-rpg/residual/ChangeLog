@@ -1,0 +1,10 @@
+# ChangeLog for games-rpg/residual
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*residual-9999 (19 Nov 2009)
+
+  19 Nov 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  +residual-9999.ebuild, +metadata.xml:
+  Residual - engine for GrimE-games
+

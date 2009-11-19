@@ -1,0 +1,10 @@
+# ChangeLog for games-action/violetland
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*violetland-0.2.1 (19 Nov 2009)
+
+  19 Nov 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
+  +violetland-0.2.1.ebuild, +metadata.xml:
+  Violetland - game like a Crimsonland
+
