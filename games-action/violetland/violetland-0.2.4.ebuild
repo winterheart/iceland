@@ -20,18 +20,23 @@ RDEPEND="media-libs/libsdl
 	media-libs/sdl-image
 	media-libs/sdl-mixer
 	media-libs/sdl-ttf
+	x11-libs/libX11
 	virtual/opengl"
 
 DOCS="README_EN.TXT"
 S="${WORKDIR}"/${PN}-v${PV}
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-DATA_INSTALL_DIR.patch
+	sed -i \
+		-e "/README_EN.TXT/d" \
+		-e "/README_RU.TXT/d" \
+		CMakeLists.txt || die "sed failed"
 }
 
 src_configure() {
-	# It's OK, patch done all things to LHS pleased
-	local mycmakeargs="-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX} -DDATA_INSTALL_DIR=${GAMES_DATADIR}"
+	local mycmakeargs="\
+		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX} \
+		-DDATA_INSTALL_DIR=${GAMES_DATADIR}"
 	cmake-utils_src_configure
 }
 
