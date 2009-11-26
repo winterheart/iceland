@@ -14,7 +14,7 @@ ESVN_REPO_URI="http://residual.svn.sourceforge.net/svnroot/residual/residual/tru
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86"
-IUSE="flac mad vorbis"
+IUSE="flac mad plugins vorbis"
 
 DEPEND="flac? ( media-libs/flac )
 	mad? ( media-libs/libmad )
@@ -25,9 +25,10 @@ DEPEND="flac? ( media-libs/flac )
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	./configure --backend=sdl --enable-release \
+	./configure --backend=sdl --enable-release --disable-tremor \
 		--prefix="${GAMES_PREFIX}" \
 		--datadir="${GAMES_DATADIR}" \
+		$(use_enable plugins) \
 		$(use_enable flac) \
 		$(use_enable mad) \
 		$(use_enable vorbis) \
