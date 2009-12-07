@@ -1,0 +1,11 @@
+--- A/CMakeLists.txt	2009-09-28 15:55:01.864452396 +0200
++++ B/CMakeLists.txt	2009-09-28 15:55:28.513440879 +0200
+@@ -323,7 +323,7 @@
+         DESTINATION "include/${INCPATH}"
+ )
+ INSTALL(FILES "${ALURE_BINARY_DIR}/alure.pc"
+-        DESTINATION lib/pkgconfig
++        DESTINATION ${LIB_INSTALL_DIR}/pkgconfig
+ )
+ 
+ 

@@ -1,0 +1,10 @@
+--- A/src/stream.cpp	2009-09-28 04:17:12.511762978 +0200
++++ B/src/stream.cpp	2009-09-28 04:17:25.200016279 +0200
+@@ -10,6 +10,7 @@
+ #include <vector>
+ #include <memory>
+ #include <string>
++#include <cstdio>
+ 
+ 
+ struct nullStream : public alureStream {
