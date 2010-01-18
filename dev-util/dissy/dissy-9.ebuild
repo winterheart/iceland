@@ -16,7 +16,9 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	sys-devel/binutils"
+	sys-devel/binutils
+	dev-python/pygtk
+	dev-python/pygobject"
 
 src_prepare() {
 	sed -i -e "/('share\/doc\//"d setup.py || die "sed failed"
