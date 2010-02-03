@@ -1,6 +1,13 @@
 # ChangeLog for www-apps/transifex
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*transifex-0.7.4 (03 Feb 2010)
+
+  03 Feb 2010; Azamat H. Hackimov <winterheart@gentoo.ru>
+  transifex-0.7.2.ebuild, transifex-0.7.3.ebuild, +transifex-0.7.4.ebuild,
+  transifex-9999.ebuild:
+  new version, QA fixes
 
   13 Oct 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
   transifex-9999.ebuild:
