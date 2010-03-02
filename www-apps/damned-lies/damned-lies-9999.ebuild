@@ -9,7 +9,7 @@ inherit distutils git multilib
 DESCRIPTION="Web application for translation tracking"
 HOMEPAGE="http://git.gnome.org/cgit/damned-lies/"
 
-GIT_REPO_URI="http://code.transifex.org/mainline"
+EGIT_REPO_URI="git://git.gnome.org/damned-lies"
 
 LICENSE="GPL-2"
 KEYWORDS=""
@@ -38,4 +38,3 @@ src_install() {
 #pkg_postinst() {
 #
 #}
-
