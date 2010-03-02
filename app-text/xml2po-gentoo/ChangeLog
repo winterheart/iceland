@@ -1,0 +1,10 @@
+# ChangeLog for app-text/xml2po-gentoo
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*xml2po-gentoo-1.0.5_p1 (02 Mar 2010)
+
+  02 Mar 2010; Azamat H. Hackimov <winterheart@gentoo.ru>
+  +xml2po-gentoo-1.0.5_p1.ebuild, +metadata.xml:
+  Initial commit for xml2po-gentoo
+
