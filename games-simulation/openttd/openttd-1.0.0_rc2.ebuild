@@ -7,6 +7,7 @@ inherit eutils games
 
 OPENGFX_VER=0.2.1
 OPENSFX_VER=0.2.1
+OPENMSX_VER=0.1.0
 
 MY_PV=${PV/_rc/-RC}
 
@@ -14,7 +15,8 @@ DESCRIPTION="OpenTTD is a clone of Transport Tycoon Deluxe"
 HOMEPAGE="http://www.openttd.org/"
 SRC_URI="http://binaries.openttd.org/releases/${MY_PV}/${PN}-${MY_PV}-source.tar.bz2
 	http://bundles.openttdcoop.org/opengfx/releases/opengfx-${OPENGFX_VER}.zip
-	http://bundles.openttdcoop.org/opensfx/releases/opensfx-${OPENSFX_VER}.zip"
+	http://bundles.openttdcoop.org/opensfx/releases/opensfx-${OPENSFX_VER}.zip
+	alsa? (	http://bundles.openttdcoop.org/openmsx/releases/openmsx-${OPENMSX_VER}.zip )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -96,30 +98,24 @@ src_install() {
 	rm -f "${D}"/usr/share/doc/${PF}/COPYING
 
 	insinto "${GAMES_DATADIR}"/${PN}/data/
+	# OpenGFX files
 	doins "${WORKDIR}"/opengfx-${OPENGFX_VER}/*.grf
 	doins "${WORKDIR}"/opengfx-${OPENGFX_VER}/opengfx.obg
-#	touch "${D}/${GAMES_DATADIR}"/${PN}/data/sample.cat
-
+	# OpenSFX files
 	doins "${WORKDIR}"/opensfx-${OPENSFX_VER}/opensfx.cat
 	doins "${WORKDIR}"/opensfx-${OPENSFX_VER}/opensfx.obs
-
+	# OpenMSX files
+	if use alsa ; then
+		insinto "${GAMES_DATADIR}"/${PN}/gm/
+		doins "${WORKDIR}"/openmsx-${OPENMSX_VER}/openmsx.obm
+		doins "${WORKDIR}"/openmsx-${OPENMSX_VER}/*.mid
+	fi
 	prepalldocs
 	prepgamesdirs
 }
 
 pkg_postinst() {
 	games_pkg_postinst
-
-	elog
-	elog "In order to play, you must copy the following file from "
-	elog "a version of TTD to ${GAMES_DATADIR}/${PN}/data/."
-	elog
-	elog "From the WINDOWS version you need sample.cat"
-	elog "OR from the DOS version you need SAMPLE.CAT"
-	elog
-	elog "File names are case sensitive so make sure they are "
-	elog "correct for whichever version you have."
-	elog
 
 	if use dedicated ; then
 		ewarn "Warning: The init script will kill all running openttd"

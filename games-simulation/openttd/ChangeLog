@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/games-simulation/openttd/ChangeLog,v 1.80 2009/12/09 17:03:30 mr_bones_ Exp $
 
+*openttd-1.0.0_rc2 (16 Mar 2010)
+
+  16 Mar 2010; Azamat H. Hackimov <winterheart@gentoo.ru>
+  -openttd-1.0.0_rc1.ebuild, +openttd-1.0.0_rc2.ebuild:
+  New rc. Testing for OpenMSX (music enchansment) support
+
 *openttd-1.0.0_rc1 (27 Feb 2010)
 
   27 Feb 2010; Azamat H. Hackimov <winterheart@gentoo.ru>
