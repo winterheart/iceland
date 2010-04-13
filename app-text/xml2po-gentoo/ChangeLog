@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Apr 2010; Azamat H. Hackimov <winterheart@gentoo.ru>
+  xml2po-gentoo-1.0.5_p2.ebuild:
+  SRC_URI fix
+
 *xml2po-gentoo-1.0.5_p2 (13 Apr 2010)
 
   13 Apr 2010; Azamat H. Hackimov <winterheart@gentoo.ru>

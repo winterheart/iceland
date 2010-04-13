@@ -9,7 +9,7 @@ inherit distutils
 MY_P=${P/_/-}
 DESCRIPTION="xml2po-gentoo - fork from xml2po for gentoo-doc-ru purposes"
 HOMEPAGE="https://projects.gentoo.ru/projects/gentoo-doc-ru"
-SRC_URI="https://projects.gentoo.ru/attachments/download/36/${MY_P}.tar.bz2"
+SRC_URI="https://projects.gentoo.ru/attachments/download/38/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
