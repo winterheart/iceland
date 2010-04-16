@@ -1,8 +1,0 @@
-# ChangeLog for net-wireless/rtl8187se
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  24 Jun 2009; Azamat H. Hackimov <winterheart@gentoo.ru>
-  -rtl8187se-04.ebuild, +metadata.xml:
-  QA fix; removing old stuff
-
