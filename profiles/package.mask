@@ -1,0 +1,7 @@
+# Azamat H. Hackimov <azamat.hackimov@gmailc.com> (29 Apr 2010)
+# Not work in kernels >=2.6.31, API changes
+net-misc/kvnet
+
+# Azamat H. Hackimov <azamat.hackimov@gmailc.com> (29 Apr 2010)
+# For internal testing only, not working at all
+www-apps/damned-lies
