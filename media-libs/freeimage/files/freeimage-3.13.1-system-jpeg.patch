@@ -1,0 +1,58 @@
+diff --git a/Source/FreeImage/PluginJPEG.cpp b/Source/FreeImage/PluginJPEG.cpp
+index b6f523a..aaecc19 100644
+--- a/Source/FreeImage/PluginJPEG.cpp
++++ b/Source/FreeImage/PluginJPEG.cpp
+@@ -34,9 +34,10 @@ extern "C" {
+ #undef FAR
+ #include <setjmp.h>
+ 
+-#include "../LibJPEG/jinclude.h"
+-#include "../LibJPEG/jpeglib.h"
+-#include "../LibJPEG/jerror.h"
++#include <sys/types.h>
++#include <stdio.h>
++#include <jpeglib.h>
++#include <jerror.h>
+ }
+ 
+ #include "FreeImage.h"
+@@ -44,6 +45,7 @@ extern "C" {
+ 
+ #include "../Metadata/FreeImageTag.h"
+ 
++#define SIZEOF(object)  ((size_t) sizeof(object))
+ 
+ // ==========================================================
+ // Plugin Interface
+diff --git a/Source/FreeImageToolkit/JPEGTransform.cpp b/Source/FreeImageToolkit/JPEGTransform.cpp
+index 16fc894..45ac958 100644
+--- a/Source/FreeImageToolkit/JPEGTransform.cpp
++++ b/Source/FreeImageToolkit/JPEGTransform.cpp
+@@ -25,12 +25,12 @@ extern "C" {
+ #undef FAR
+ #include <setjmp.h>
+ 
+-#include "../LibJPEG/jinclude.h"
+-#include "../LibJPEG/jpeglib.h"
+-#include "../LibJPEG/jerror.h"
+-#include "../LibJPEG/transupp.h"
+-}
+-
++#include <sys/types.h>
++#include <stdio.h>
++#include <jpeglib.h>
++#include <jerror.h>
++#include "../LibJPEG/transupp.h"
++}
+ #include "FreeImage.h"
+ #include "Utilities.h"
+ 
+@@ -266,7 +266,7 @@ LosslessTransform(const FilenameIO *filenameIO, FREE_IMAGE_JPEG_OPERATION operat
+ 		jcopy_markers_execute(&srcinfo, &dstinfo, copyoption);
+ 		
+ 		// Execute image transformation, if any
+-		jtransform_execute_transformation(&srcinfo, &dstinfo, src_coef_arrays, &transfoptions);
++		jtransform_execute_transform(&srcinfo, &dstinfo, src_coef_arrays, &transfoptions);
+ 		
+ 		// Finish compression and release memory
+ 		jpeg_finish_compress(&dstinfo);
