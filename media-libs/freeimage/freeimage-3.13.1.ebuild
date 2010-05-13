@@ -60,7 +60,8 @@ src_install() {
 		-e "s:@DESCRIPTION@:${DESCRIPTION}:" \
 		-e "s:@REQUIRES@:OpenEXR libpng:" \
 		-e "s:@VERSION@:${PV}:" \
-		-e "s:@LIBS@:-lfreeimage -lfreeimageplus -ljpeg -lmng -ltiff -lopenjpeg -lz:" \
+		-e "s:@LIBS@:-lfreeimage -lfreeimageplus:" \
+		-e "s:@EXTLIBS@:-ljpeg -lmng -ltiff -lopenjpeg -lz:" \
 		"${FILESDIR}/${PN}.pc.in" > "${D}/usr/$(get_libdir)/pkgconfig/${PN}.pc"	|| die
 	eend $?
 	PKG_CONFIG_PATH="${D}/usr/$(get_libdir)/pkgconfig/" pkg-config --exists ${PN} \

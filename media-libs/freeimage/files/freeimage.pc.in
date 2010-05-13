@@ -1,4 +1,4 @@
-prefix=/usr
+prefix=${pcfiledir}/../..
 exec_prefix=${prefix}
 libdir=${exec_prefix}/@LIBDIR@
 
@@ -7,3 +7,4 @@ Description: @DESCRIPTION@
 Version: @VERSION@
 Requires: @REQUIRES@
 Libs: @LIBS@
+Libs.private: @EXTLIBS@
