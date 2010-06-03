@@ -1,6 +1,10 @@
 # ChangeLog for www-apps/redmine
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  03 Jun 2010; Azamat H. Hackimov <winterheart@gentoo.ru>
+  redmine-9999.ebuild:
+  Unkeyworded. Use redmine from portage.
 
 *redmine-9999 (07 Oct 2009)
 

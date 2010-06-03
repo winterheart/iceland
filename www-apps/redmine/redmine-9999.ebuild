@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.redmine.org"
 SRC_URI=""
 ESVN_REPO_URI="http://redmine.rubyforge.org/svn/trunk/"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 LICENSE="GPL-2"
 #SLOT="0"
 IUSE="cvs darcs git imagemagick mercurial mysql openid postgres sqlite3 subversion"
@@ -22,13 +22,13 @@ DEPEND="dev-ruby/rails:2.3
 RDEPEND="${DEPEND}
 	>=dev-ruby/ruby-net-ldap-0.0.4
 	>=dev-ruby/coderay-0.7.6.227
-	cvs? ( >=dev-util/cvs-1.12 )
-	darcs? ( dev-util/darcs )
-	git? ( dev-util/git )
+	cvs? ( >=dev-vcs/cvs-1.12 )
+	darcs? ( dev-vcs/darcs )
+	git? ( dev-vcs/git )
 	imagemagick? ( dev-ruby/rmagick )
-	mercurial? ( dev-util/mercurial )
+	mercurial? ( dev-vcs/mercurial )
 	openid? ( >=dev-ruby/ruby-openid-2 )
-	subversion? ( >=dev-util/subversion-1.3 )"
+	subversion? ( >=dev-vcs/subversion-1.3 )"
 
 pkg_setup() {
 	webapp_pkg_setup
@@ -60,4 +60,3 @@ src_install() {
 
 	webapp_src_install
 }
-
