@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}_src_v${MY_PV}.tar.bz2"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="boost +boost-threads doc cg double-precision examples +freeimage +ois poco-threads test tbb-threads +zip"
+IUSE="+boost +boost-threads doc cg double-precision examples +freeimage +ois poco-threads test tbb-threads tools +zip"
 RESTRICT="test" #139905
 
 RDEPEND="media-libs/freetype:2
@@ -43,15 +43,17 @@ src_configure() {
 	#-DOGRE_STATIC=ON
 	local mycmakeargs="
 		-DOGRE_LIB_DIRECTORY="$(get_libdir)"
+		$(cmake-utils_use boost OGRE_USE_BOOST)
 		$(cmake-utils_use cg OGRE_BUILD_PLUGIN_CG)
 		$(cmake-utils_use double-precision OGRE_CONFIG_DOUBLE)
-		$(cmake-utils_use test OGRE_BUILD_TESTS)
 		$(cmake-utils_use doc OGRE_INSTALL_DOCS)
-		$(cmake-utils_use boost OGRE_USE_BOOST)
+		$(cmake-utils_use examples OGRE_INSTALL_SAMPLES)
 		$(cmake-utils_use freeimage OGRE_CONFIG_ENABLE_FREEIMAGE)
-		$(cmake-utils_use zip OGRE_CONFIG_ENABLE_ZIP)
-		$(cmake-utils_use examples OGRE_INSTALL_SAMPLES)"
+		$(cmake-utils_use test OGRE_BUILD_TESTS)
+		$(cmake-utils_use tools OGRE_BUILD_TOOLS)
+		$(cmake-utils_use zip OGRE_CONFIG_ENABLE_ZIP)"
 
+	use cg && [ -d /opt/nvidia-cg-toolkit ] && ogre_dynamic_config+="-DCg_HOME=/opt/nvidia-cg-toolkit"
 	use freeimage && LDFLAGS="$LDFLAGS $(pkg-config --libs freeimage)"
 
 	if use boost-threads; then

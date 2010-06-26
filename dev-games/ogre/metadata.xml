@@ -18,6 +18,7 @@ Object-oriented Graphics Rendering Engine
   <flag name="double-precision">more precise calculations at the expense of speed</flag>
   <flag name="ois">OIS plugin</flag>
   <flag name="freeimage">freeimage plugin</flag>
+  <flag name="tools">Build Ogre's command line tools</flag>
   <flag name="zip">zip plugin</flag>
 </use>
 </pkgmetadata>
