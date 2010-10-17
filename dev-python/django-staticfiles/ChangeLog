@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/django-staticfiles
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*django-staticfiles-0.3.1 (17 Oct 2010)
+
+  17 Oct 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +django-staticfiles-0.3.1.ebuild, +metadata.xml:
+  Initial commit for Transifex
+
