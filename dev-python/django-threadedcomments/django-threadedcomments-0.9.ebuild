@@ -9,7 +9,8 @@ inherit distutils
 
 DESCRIPTION="A simple yet flexible threaded commenting system."
 HOMEPAGE="http://code.google.com/p/django-threadedcomments/"
-SRC_URI="http://pypi.python.org/packages/source/d/django-threadedcomments/${P}.tar.gz"
+# there no 0.9 tarball exist
+SRC_URI="http://trac.transifex.org/files/deps/${P}.tar.gz"
 LICENSE="BSD-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
