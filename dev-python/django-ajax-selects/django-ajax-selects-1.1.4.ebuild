@@ -8,7 +8,7 @@ inherit distutils
 
 DESCRIPTION="jQuery-powered auto-complete fields for ForeignKey and ManyToMany fields"
 HOMEPAGE="http://code.google.com/p/django-ajax-selects/"
-SRC_URI="https://projects.gentoo.ru/attachements/37/ajax-selects-${PV}.tar.bz2"
+SRC_URI="http://django-ajax-selects.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="MIT"
 KEYWORDS="~amd64 ~x86"
@@ -17,7 +17,7 @@ IUSE=""
 DEPEND="dev-python/setuptools"
 RDEPEND=""
 
-S="${WORKDIR}/Ajax Select-1.0"
+#S="${WORKDIR}/Ajax Select-1.0"
 
 pkg_postinst() {
 	echo
