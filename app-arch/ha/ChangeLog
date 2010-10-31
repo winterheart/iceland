@@ -1,0 +1,10 @@
+# ChangeLog for app-arch/ha
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ha-0.999p (31 Oct 2010)
+
+  31 Oct 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +ha-0.999p.ebuild, +metadata.xml:
+  HA-archiver, request by http://www.gentoo.ru/node/21099
+
