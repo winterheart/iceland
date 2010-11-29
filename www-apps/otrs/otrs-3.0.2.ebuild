@@ -12,7 +12,7 @@ HOMEPAGE="http://otrs.org/"
 SRC_URI="http://ftp.otrs.org/pub/${PN}/${P}.tar.bz2"
 
 LICENSE="AGPL-3"
-KEYWORDS="" # "~amd64 ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="apache2 cjk fastcgi +gd ldap mod_perl +mysql pdf postgres soap"
 SLOT="3.0.2"
 
@@ -32,6 +32,7 @@ RDEPEND="${DEPEND}
 	dev-perl/IO-Socket-SSL
 	>=dev-perl/JavaScript-Minifier-1.05
 	>=dev-perl/JSON-2.21
+	dev-perl/JSON-XS
 	dev-perl/LWP-UserAgent-Determined
 	dev-perl/Mail-POP3Client
 	dev-perl/MailTools
@@ -58,27 +59,22 @@ RDEPEND="${DEPEND}
 	>=virtual/perl-CGI-3.33
 	virtual/perl-libnet
 	virtual/perl-Digest-MD5
-	>=virtual/perl-Digest-SHA-5.48"
+	>=virtual/perl-Digest-SHA-5.48
 
-# JavaScript::Minifier-1.05
+	virtual/mta
 
-#RDEPEND="${DEPEND}
-#	virtual/mta
-#	dev-perl/libwww-perl
-#	apache2? ( mod_perl? ( www-servers/apache:2
-#					=www-apache/libapreq2-2* www-apache/mod_perl )
-#		fastcgi? ( || ( www-apache/mod_fcgid www-apache/mod_fastcgi )
-#				www-servers/apache:2[suexec] )
-#		!fastcgi? (
-#			!mod_perl? ( www-servers/apache:2[suexec] ) )
-#			)
-#	fastcgi? ( dev-perl/FCGI virtual/httpd-fastcgi )
-#	!fastcgi? (
-#		!apache2? ( virtual/httpd-cgi ) )
+	apache2? ( mod_perl? ( www-servers/apache:2
+					=www-apache/libapreq2-2* www-apache/mod_perl )
+		fastcgi? ( || ( www-apache/mod_fcgid www-apache/mod_fastcgi )
+				www-servers/apache:2[suexec] )
+		!fastcgi? (
+			!mod_perl? ( www-servers/apache:2[suexec] ) )
+			)
+	fastcgi? ( dev-perl/FCGI virtual/httpd-fastcgi )
+	!fastcgi? (
+		!apache2? ( virtual/httpd-cgi ) )"
 #	postgres? ( dev-perl/DBD-Pg )
-#"
-
-S="${WORKDIR}/${PN}-3.0.0"
+#   dev-perl/libwww-perl
 
 pkg_setup() {
 
@@ -134,7 +130,7 @@ src_install() {
 
 	webapp_configfile "${MY_HOSTROOTDIR}/${PF}"/Kernel/Config.pm
 	webapp_postinst_txt en "${FILESDIR}"/postinstall-en-2.txt
-	webapp_postinst_txt ru "${FILESDIR}"/postinstall-ru-2.txt
+#	webapp_postinst_txt ru "${FILESDIR}"/postinstall-ru-2.txt
 	webapp_hook_script "${FILESDIR}"/reconfig-3
 	webapp_src_install
 }
