@@ -1,0 +1,10 @@
+# ChangeLog for dev-perl/CSS-Minifier
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*CSS-Minifier-0.01 (29 Nov 2010)
+
+  29 Nov 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +CSS-Minifier-0.01.ebuild, +metadata.xml:
+  Remove unnecessary whitespace from CSS files
+
