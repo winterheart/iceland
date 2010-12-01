@@ -4,15 +4,16 @@
 
 EAPI=3
 
-inherit distutils
+inherit distutils mercurial
 
 DESCRIPTION="A command line interface for Transifex"
 HOMEPAGE="http://www.indifex.com/"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+#SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+EHG_REPO_URI="http://bitbucket.org/indifex/transifex-client"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE=""
 
 DEPEND=""
@@ -22,5 +23,5 @@ RDEPEND="${DEPEND}
 pkg_postinst() {
 	distutils_pkg_postinst
 
-	elog "See http://trac.transifex.org/wiki/Development/Transifex-1.0 for using."
+	elog "See http://help.transifex.net/user-guide/client/client-0.2.html for using."
 }
