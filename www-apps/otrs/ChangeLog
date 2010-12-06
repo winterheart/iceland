@@ -1,0 +1,12 @@
+# ChangeLog for www-apps/otrs
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*otrs-3.0.3 (06 Dec 2010)
+
+  06 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  files/postinstall-en-2.txt, -files/reconfig-3, -otrs-3.0.2.ebuild,
+  +otrs-3.0.3.ebuild, +files/apache2-3.0.patch, +files/reconfig-4:
+  New otrs-3.0.3.
+  Fixed postinstall script, some improvements.
+

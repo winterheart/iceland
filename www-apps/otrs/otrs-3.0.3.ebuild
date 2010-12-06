@@ -96,7 +96,7 @@ src_prepare() {
 		cp ${i} $(basename ${i} .dist) || die
 	done
 
-	rm -fr "${S}/scripts"/{auto_*, redhat*, suse*, *.spec} || die
+	rm -fr "${S}/scripts"/{auto_*,redhat*,suse*,*.spec} || die
 
 	if use fastcgi; then
 		cd "${S}" || die
@@ -131,16 +131,16 @@ src_install() {
 	webapp_configfile "${MY_HOSTROOTDIR}/${PF}"/Kernel/Config.pm
 	webapp_postinst_txt en "${FILESDIR}"/postinstall-en-2.txt
 #	webapp_postinst_txt ru "${FILESDIR}"/postinstall-ru-2.txt
-	webapp_hook_script "${FILESDIR}"/reconfig-3
+	webapp_hook_script "${FILESDIR}"/reconfig-4
 	webapp_src_install
 }
 
 pkg_postinst() {
-	ewarn "webapp-config will not be run automatically"
-	ewarn "That messes up Apache configs"
-	ewarn "Don't run webapp-config with -d otrs. Instead, try"
-	ewarn "webapp-config -I -h <host> -d ot ${PN} ${PVR}"
-	ewarn
+#	ewarn "webapp-config will not be run automatically"
+#	ewarn "That messes up Apache configs"
+#	ewarn "Don't run webapp-config with -d otrs. Instead, try"
+#	ewarn "webapp-config -I -h <host> -d ot ${PN} ${PVR}"
+#	ewarn
 
 	if ! use apache2; then
 		ewarn "You did not activate the USE-flag apache2 which means you"
