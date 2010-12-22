@@ -5,7 +5,7 @@
 
 EAPI="2"
 
-inherit distutils
+inherit distutils eutils
 
 DESCRIPTION="A simple yet flexible threaded commenting system."
 HOMEPAGE="http://code.google.com/p/django-threadedcomments/"
@@ -16,3 +16,9 @@ KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE=""
 DEPEND="dev-python/setuptools"
+RDEPEND=""
+
+src_prepare() {
+	# Fix for index creation error
+	epatch "${FILESDIR}"/${P}-index-db-fix.patch
+}
