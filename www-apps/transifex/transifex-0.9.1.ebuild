@@ -54,6 +54,7 @@ src_prepare() {
 	einfo "CONFIG_PROTECT=\"/usr/$(get_libdir)/python$(python_get_version)/site-packages/transifex/settings\""
 	echo "CONFIG_PROTECT=\"/usr/$(get_libdir)/python$(python_get_version)/site-packages/transifex/settings\"" > "${T}/50${PN}" || die
 	epatch "${FILESDIR}"/${P}-0001_initial.py.patch
+	epatch "${FILESDIR}"/${P}-0002_superuser-creation.patch
 }
 
 src_compile() {
