@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*transifex-0.9.1 (22 Dec 2010)
+
+  22 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -transifex-0.7.4.ebuild, +transifex-0.9.1.ebuild,
+  +files/transifex-0.9.1-0001_initial.py.patch:
+  Transifex 0.9.1, don't use it, still have bugs...
+
 *transifex-0.8.0 (16 Mar 2010)
 
   16 Mar 2010; Azamat H. Hackimov <winterheart@gentoo.ru>
