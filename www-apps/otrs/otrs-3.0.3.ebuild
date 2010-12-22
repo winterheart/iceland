@@ -4,8 +4,7 @@
 
 EAPI=2
 
-inherit eutils confutils webapp
-WEBAPP_MANUAL_SLOT="yes"
+inherit eutils confutils
 
 DESCRIPTION="OTRS is an Open source Ticket Request System"
 HOMEPAGE="http://otrs.org/"
@@ -14,9 +13,10 @@ SRC_URI="http://ftp.otrs.org/pub/${PN}/${P}.tar.bz2"
 LICENSE="AGPL-3"
 KEYWORDS="~amd64 ~x86"
 IUSE="apache2 cjk fastcgi +gd ldap mod_perl +mysql pdf postgres soap"
-SLOT="3.0.2"
+SLOT="0"
+#WEBAPP_MANUAL_SLOT="yes"
 
-# add oracle/mssql/DB2 DB support 
+# FIXME add oracle/mssql/DB2 DB support 
 DEPEND=""
 RDEPEND="${DEPEND}
 	dev-perl/Authen-SASL
@@ -24,6 +24,7 @@ RDEPEND="${DEPEND}
 	dev-perl/CSS-Minifier
 	dev-perl/Date-Pcalc
 	mysql? ( dev-perl/DBD-mysql )
+	postgres? ( dev-perl/DBD-Pg )
 	dev-perl/DBI
 	cjk? ( >=dev-perl/Encode-HanExtra-0.23 )
 	gd? ( dev-perl/GD
@@ -73,79 +74,96 @@ RDEPEND="${DEPEND}
 	fastcgi? ( dev-perl/FCGI virtual/httpd-fastcgi )
 	!fastcgi? (
 		!apache2? ( virtual/httpd-cgi ) )"
-#	postgres? ( dev-perl/DBD-Pg )
+
 #   dev-perl/libwww-perl
 
+OTRS_HOME="/var/lib/otrs"
+
 pkg_setup() {
-
-	webapp_pkg_setup
-
-	if use apache2; then
-		enewuser otrs -1 -1 /dev/null apache
-	fi
-
-	confutils_require_any postgres mysql
-	confutils_use_depend_all mod_perl apache2
+	enewuser otrs -1 -1 ${OTRS_HOME} apache -c "OTRS User"
+	confutils_require_any mysql postgres
+#	confutils_use_depend_all mod_perl apache2
 }
 
 src_prepare() {
+	rm -fr "${S}/scripts"/{auto_*,redhat*,suse*,*.spec} || die
 	cp Kernel/Config.pm{.dist,} || die
+	# procmail/fetchmail/mailfilter
+#	local mailrc=".fetchmailrc .mailfilter .procmailrc"
+#	for i in ${mailrc}; do
+#		mv ${i}{.dist,} || die
+#	done
+#	fperms 600 ${mailrc} || die
+#	fowners otrs ${mailrc} || die
 
-	cd ./Kernel/Config/ || die
+	sed -i -e "s:/opt/otrs:${OTRS_HOME}:g" "${S}"/Kernel/Config.pm \
+		|| die "sed failed"
+
+	grep -lR "/opt" "${S}"/scripts | \
+		xargs sed -i -e "s:/opt/otrs:${OTRS_HOME}:g" \
+		|| die "sed failed"
+
+	cd Kernel/Config/ || die
 	for i in *.dist; do
 		cp ${i} $(basename ${i} .dist) || die
 	done
 
-	rm -fr "${S}/scripts"/{auto_*,redhat*,suse*,*.spec} || die
+	perl "${S}"/bin/otrs.SetPermissions.pl \
+		--otrs-user=otrs \
+		--web-user=apache \
+		--otrs-group=apache \
+		--web-group=apache "${S}" \
+		|| die "Could not set permissions"
 
-	if use fastcgi; then
-		cd "${S}" || die
-		epatch "${FILESDIR}"/apache2-3.0.patch
-		sed -e "s|cgi-bin|fcgi-bin|" \
-						-i scripts/apache2-httpd.include.conf || die
-	fi
+	echo "CONFIG_PROTECT=\"${OTRS_HOME}/Kernel/Config.pm \
+		${OTRS_HOME}/Kernel/Config/GenericAgent.pm\"" > "${T}/50${PN}"
+
+#	if use fastcgi; then
+#		cd "${S}" || die
+#		epatch "${FILESDIR}"/apache2-3.0.patch
+#		sed -e "s|cgi-bin|fcgi-bin|" \
+#						-i scripts/apache2-httpd.include.conf || die
+#	fi
 }
 
 src_install() {
-	webapp_src_preinst
-
-	dodir "${MY_HOSTROOTDIR}"/${PF}
 	dodoc CHANGES CREDITS INSTALL README* TODO UPGRADING \
-	 	doc/otrs-database.dia  doc/X-OTRS-Headers.txt \
-		.fetchmailrc.dist .mailfilter.dist .procmailrc.dist || die
+	 	doc/otrs-database.dia  doc/X-OTRS-Headers.txt || die
 
-	#dohtml doc/manual/{en,de}/html/*
+	dodoc doc/manual/en/otrs_admin_book.pdf
 
-	insinto "${MY_HOSTROOTDIR}/${PF}"
+	insinto "${OTRS_HOME}"
 	doins -r .fetchmailrc.dist .mailfilter.dist .procmailrc.dist RELEASE \
-			Kernel bin scripts var || die "doins failed"
+		Custom Kernel bin scripts var || die "doins failed"
 
-	mv "${D}/${MY_HOSTROOTDIR}/${PF}/var/httpd"/htdocs/* \
-								"${D}/${MY_HTDOCSDIR}" || die "mv failed"
-	rm -rf "${D}/${MY_HOSTROOTDIR}/${PF}"/var/httpd || die
+	cat "${S}"/var/cron/*.dist > crontab
+	insinto /usr/share/doc/${PF}/
+	doins crontab
 
-	for a in "article log pics/images pics/stats pics sessions spool tmp tmp/CacheFileStorable"; do
-		keepdir "${MY_HOSTROOTDIR}/${PF}/var/${a}"
+	for a in article log pics/images pics/stats pics sessions spool tmp tmp/CacheFileStorable; do
+		keepdir "${OTRS_HOME}/var/${a}"
 	done
+	doenvd "${T}/50${PN}" || die
+}
 
-	webapp_configfile "${MY_HOSTROOTDIR}/${PF}"/Kernel/Config.pm
-	webapp_postinst_txt en "${FILESDIR}"/postinstall-en-2.txt
-#	webapp_postinst_txt ru "${FILESDIR}"/postinstall-ru-2.txt
-	webapp_hook_script "${FILESDIR}"/reconfig-4
-	webapp_src_install
+pkg_config() {
+	einfo "Installing cronjobs"
+	crontab -u otrs /usr/share/doc/${PF}/crontab
 }
 
 pkg_postinst() {
+	elog "Add cronjobs from with following command:"
+	elog "crontab -u otrs crontab"
 #	ewarn "webapp-config will not be run automatically"
 #	ewarn "That messes up Apache configs"
 #	ewarn "Don't run webapp-config with -d otrs. Instead, try"
 #	ewarn "webapp-config -I -h <host> -d ot ${PN} ${PVR}"
 #	ewarn
 
-	if ! use apache2; then
-		ewarn "You did not activate the USE-flag apache2 which means you"
-		ewarn "will need to create the otrs user yourself. Make this user"
-		ewarn "a member of your webserver group."
-	fi
-	webapp_pkg_postinst
+#	if ! use apache2; then
+#		ewarn "You did not activate the USE-flag apache2 which means you"
+#		ewarn "will need to create the otrs user yourself. Make this user"
+#		ewarn "a member of your webserver group."
+#	fi
+#	webapp_pkg_postinst
 }
