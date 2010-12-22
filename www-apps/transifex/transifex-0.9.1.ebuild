@@ -48,11 +48,9 @@ RDEPEND="=dev-python/django-1.1*
 	sys-devel/gettext
 	subversion? ( dev-python/pysvn )"
 
-#S="${WORKDIR}"/mainline
-
 src_prepare() {
-	einfo "CONFIG_PROTECT=\"/usr/$(get_libdir)/python$(python_get_version)/site-packages/transifex/settings\""
-	echo "CONFIG_PROTECT=\"/usr/$(get_libdir)/python$(python_get_version)/site-packages/transifex/settings\"" > "${T}/50${PN}" || die
+	TX_HOME="/usr/$(get_libdir)/python$(python_get_version)/site-packages/${PN}/"
+	echo "CONFIG_PROTECT=\"${TX_HOME}/settings\"" > "${T}/50${PN}" || die
 	epatch "${FILESDIR}"/${P}-0001_initial.py.patch
 	epatch "${FILESDIR}"/${P}-0002_superuser-creation.patch
 }
@@ -70,12 +68,8 @@ src_compile() {
 src_install() {
 	distutils_src_install
 
-#	insinto /etc/transifex
-#	doins -r transifex/settings/*
-#	rm -fr "${D}"/usr/$(get_libdir)/python${PYVER}/site-packages/transifex/settings
-#	dosym /etc/transifex /usr/$(get_libdir)/python${PYVER}/site-packages/transifex/settings
-	fperms 0755	/usr/$(get_libdir)/python$(python_get_version)/site-packages/transifex/manage.py
-	# rm -fr "${D}"/usr/templates
+	fperms 0755	${TX_HOME}/manage.py
+
 	# There should be fperm for properly saving
 	keepdir /var/lib/transifex/scratchdir
 	dodir /var/lib/transifex/scratchdir/{msgmerge_files,sources}
@@ -87,8 +81,28 @@ src_install() {
 }
 
 pkg_postinst() {
+	elog "Edit	${TX_HOME}/settings/20-engines.conf"
+	elog "then run emerge --config =${CATEGORY}/${PF}"
 	echo
-	einfo "For installation and updating instructions please refer"
-	einfo "http://docs.transifex.org/intro/install.html"
+	elog "For futher installation and updating instructions please refer"
+	elog "http://docs.transifex.org/intro/install.html"
 	echo
+}
+
+pkg_config() {
+	cd ${TX_HOME}
+	echo
+	einfo "Initialization database"
+	echo
+	python manage.py txcreatedirs || die
+	python manage.py syncdb --noinput || die
+	python manage.py migrate || die
+	python manage.py txlanguages || die
+	python manage.py txcreatenoticetypes || die
+	python manage.py build_static || die
+	echo
+	einfo "Creating superuser"
+	einfo "If you already have one, just press Ctrl+C"
+	echo
+	python manage.py createsuperuser || die
 }
