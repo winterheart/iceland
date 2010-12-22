@@ -22,5 +22,5 @@ RDEPEND="${DEPEND}
 pkg_postinst() {
 	distutils_pkg_postinst
 
-	elog "See http://help.transifex.net/user-guide/client/client-${PN}.html for using."
+	elog "See http://help.transifex.net/user-guide/client/ for using."
 }
