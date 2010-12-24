@@ -6,6 +6,3 @@ net-misc/kvnet
 # For internal testing only, not working at all
 www-apps/damned-lies
 
-# Azamat H. Hackimov <azamat.hackimov@gmailc.com> (22 Dec 2010)
-# Still incomplete, installation failure
->=www-apps/transifex-0.9
