@@ -31,7 +31,7 @@ RDEPEND=">=dev-python/django-1.1
 	>=dev-python/django-notification-0.1.2
 	>=dev-python/django-pagination-1.0.5
 	dev-python/django-piston
-	<=dev-python/django-profile-0.6.426
+	dev-python/django-profile
 	>=dev-python/django-sorting-0.1
 	dev-python/django-staticfiles
 	>=dev-python/django-tagging-0.3
