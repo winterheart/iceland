@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  transifex-0.9.1.ebuild:
+  webapp.eclass for installing media-files
+
   22 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
   transifex-0.9.1.ebuild:
   pkg_config() for installation
