@@ -37,7 +37,7 @@ RDEPEND=">=dev-python/django-1.1
 	>=dev-python/django-tagging-0.3
 	>=dev-python/django-threadedcomments-0.9
 	dev-python/httplib2
-	~dev-python/imaging-1.1.6
+	>=dev-python/imaging-1.1.6
 	dev-python/markdown
 	>=dev-python/polib-0.5.1
 	>=dev-python/pygments-0.9

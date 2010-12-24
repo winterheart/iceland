@@ -4,6 +4,10 @@
 
   24 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
   transifex-0.9.1.ebuild:
+  Changing dep
+
+  24 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  transifex-0.9.1.ebuild:
   webapp.eclass for installing media-files
 
   22 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
