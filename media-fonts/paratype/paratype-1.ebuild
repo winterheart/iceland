@@ -2,12 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI="3"
 inherit font
 
 DESCRIPTION="ParaType font collection for languages of Russia"
-HOMEPAGE="http://fonts.ru/public/"
-SRC_URI="http://www.fontstock.com/public/PTSans.zip"
+HOMEPAGE="http://www.paratype.ru/public/"
+SRC_URI="http://www.fontstock.com/public/PTSansOFL.zip
+	http://www.fontstock.com/public/PTSerifOFL.zip"
 
 LICENSE="OFL-1.1"
 SLOT="0"
@@ -20,8 +21,3 @@ RDEPEND=""
 S=${WORKDIR}
 FONT_S=${WORKDIR}
 FONT_SUFFIX="ttf"
-
-src_install() {
-	font_src_install
-	dodoc "${S}/PT Free Font License_eng.txt"
-}
