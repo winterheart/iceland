@@ -1,6 +1,10 @@
 # ChangeLog for www-apps/transifex
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  transifex-0.8.0.ebuild, transifex-0.9.1.ebuild:
+  Fixing dependencies versions.
 
   24 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
   transifex-0.9.1.ebuild:
