@@ -3,6 +3,10 @@
 # $Header: $
 
   13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  transifex-0.9.1.ebuild, +files/transifex-0.9.1-0003_reviews-fix.patch:
+  Reviews fix.
+
+  13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
   transifex-0.9.1.ebuild:
   Fix for postinstallation procedure. New dep.
 

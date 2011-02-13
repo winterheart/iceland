@@ -55,8 +55,7 @@ src_prepare() {
 	sed -i -e \
 		"s:os.path.dirname(__file__), 'settings':'/etc/${PN}/':" \
 		transifex/settings.py || die "sed failed"
-	epatch "${FILESDIR}"/${P}-0001_initial.py.patch
-	epatch "${FILESDIR}"/${P}-0002_superuser-creation.patch
+	EPATCH_SOURCE="${FILESDIR}" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
 }
 
 src_compile() {
@@ -81,7 +80,6 @@ src_install() {
 	if use doc ; then
 		dohtml -r docs/html/* || die "dohtml failed"
 	fi
-#	doenvd "${T}/50${PN}" || die
 
 	insinto /etc/${PN}
 	doins ${PN}/settings/*.conf
