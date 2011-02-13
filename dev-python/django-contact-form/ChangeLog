@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  django-contact-form-0.3_p61.ebuild:
+  Fixing compilation
+
 *django-contact-form-0.3_p61 (13 Feb 2011)
 
   13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>

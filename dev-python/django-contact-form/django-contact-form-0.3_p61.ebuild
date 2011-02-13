@@ -18,5 +18,3 @@ SLOT="0"
 IUSE=""
 DEPEND=""
 RDEPEND=""
-
-S="${WORKDIR}/${PN}"
