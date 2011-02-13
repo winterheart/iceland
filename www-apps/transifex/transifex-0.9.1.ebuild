@@ -45,14 +45,13 @@ RDEPEND="=dev-python/django-1.1*
 	dev-python/simplejson
 	>=dev-python/south-0.7
 	dev-python/urlgrabber
+	dev-vcs/mercurial
 	sys-devel/gettext
 	subversion? ( dev-python/pysvn )"
 
 WEBAPP_MANUAL_SLOT="yes"
 
 src_prepare() {
-	TX_HOME="/usr/$(get_libdir)/python$(python_get_version)/site-packages/${PN}/"
-#	echo "CONFIG_PROTECT=\"${TX_HOME}/settings\"" > "${T}/50${PN}" || die
 	sed -i -e \
 		"s:os.path.dirname(__file__), 'settings':'/etc/${PN}/':" \
 		transifex/settings.py || die "sed failed"
@@ -73,7 +72,7 @@ src_compile() {
 src_install() {
 	distutils_src_install
 
-	fperms 0755	${TX_HOME}/manage.py
+	fperms 0755	/usr/$(get_libdir)/python$(python_get_version)/site-packages/${PN}/manage.py
 
 	# There should be fperm for properly saving
 	keepdir /var/lib/transifex/scratchdir
@@ -104,7 +103,7 @@ pkg_postinst() {
 }
 
 pkg_config() {
-	cd ${TX_HOME}
+	cd /usr/$(get_libdir)/python$(python_get_version)/site-packages/${PN}/
 	echo
 	einfo "Initialization database"
 	echo

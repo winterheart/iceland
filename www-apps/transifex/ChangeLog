@@ -3,6 +3,10 @@
 # $Header: $
 
   13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  transifex-0.9.1.ebuild:
+  Fix for postinstallation procedure. New dep.
+
+  13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
   transifex-0.8.0.ebuild, transifex-0.9.1.ebuild:
   Fixing dependencies versions.
 
