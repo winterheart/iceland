@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  gvrpcd-1.3.ebuild, +files/conf.gvrpcd, +files/init.gvrpcd:
+  Initscripts for gvrpcd
+
 *gvrpcd-1.3 (25 Feb 2011)
 
   25 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>

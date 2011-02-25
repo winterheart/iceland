@@ -4,6 +4,8 @@
 
 EAPI=3
 
+inherit linux-info
+
 DESCRIPTION="A program for announcing VLANs using GVRP"
 HOMEPAGE="http://sokrates.mimuw.edu.pl/~sebek/gvrpcd/"
 SRC_URI="http://sokrates.mimuw.edu.pl/~sebek/${PN}/${P}.tar.gz"
@@ -16,12 +18,15 @@ IUSE=""
 DEPEND="net-libs/libnet:1.1"
 RDEPEND="${DEPEND}"
 
+CONFIG_CHECK="~CONFIG_VLAN_8021Q ~CONFIG_VLAN_8021Q_GVRP"
+
 src_compile() {
 	emake || die "emake failed"
 }
 
 src_install() {
-	into /
 	dosbin gvrpcd
 	dodoc README
+	newinitd "${FILESDIR}"/init.gvrpcd gvrpcd || die "Initscript installation failed"
+	newconfd "${FILESDIR}"/conf.gvrpcd gvrpcd || die "Confscript installation failed"
 }
