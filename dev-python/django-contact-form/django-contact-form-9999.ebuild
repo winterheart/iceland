@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=3
 inherit distutils mercurial
 
 DESCRIPTION="An extensible contact-form application for Django"
