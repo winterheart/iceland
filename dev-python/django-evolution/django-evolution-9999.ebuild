@@ -1,7 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=3
 inherit distutils subversion
 
 DESCRIPTION="Schema Evolution for the Django Project"
@@ -17,4 +18,3 @@ IUSE=""
 
 DEPEND=""
 RDEPEND=">=dev-python/django-1.0"
-

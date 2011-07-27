@@ -1,0 +1,16 @@
+# ChangeLog for dev-python/django-evolution
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  27 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  django-evolution-9999.ebuild:
+  QA: EAPI 3, mirror
+
+  27 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  django-evolution-9999.ebuild:
+  QA: EAPI 3, mirror
+
+  27 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  django-evolution-9999.ebuild:
+  QA: EAPI 3, mirror
+
