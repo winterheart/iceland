@@ -1,0 +1,10 @@
+# Copyright 1999-2011 Gentoo Foundation
+# # Distributed under the terms of the GNU General Public License v2
+# # $Header: $
+
+# On which interfaces should listen gcrpcd?
+INTERFACES="eth0"
+
+# Extra arguments. See gvrpcd -h for additional info.
+EXTRA_ARGS=""
+
