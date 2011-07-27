@@ -1,7 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=3
 inherit distutils
 
 DESCRIPTION="A complete Python wrapper for the Google Chart API"
