@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/django-tagging
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  django-tagging-0.3.1.ebuild, django-tagging-9999.ebuild:
+  QA: EAPI 3, mirror
 
 *django-tagging-0.3.1 (03 Jun 2010)
 
