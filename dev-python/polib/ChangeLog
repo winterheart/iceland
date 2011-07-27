@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  polib-0.5.5.ebuild, polib-0.6.2.ebuild:
+  QA: EAPI 3, mirror
+
 *polib-0.6.2 (13 Feb 2011)
 
   13 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
