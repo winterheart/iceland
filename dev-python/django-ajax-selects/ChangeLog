@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/django-ajax-selects
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  django-ajax-selects-1.1.4.ebuild:
+  QA: EAPI 3, mirror
 
 *django-ajax-selects-1.0_p20100316 (16 Mar 2010)
 
