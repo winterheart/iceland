@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Oct 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  vkplayer-0.08.14.ebuild:
+  Support for LANGS.
+
 *vkplayer-0.08.14 (10 Oct 2011)
 
   10 Oct 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com> 
