@@ -1,0 +1,12 @@
+# ChangeLog for media-video/crtmpserver
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*crtmpserver-717 (31 Mar 2012)
+
+  31 Mar 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +crtmpserver-717.ebuild, +files/crtmpserver-717-disable-Werror.patch,
+  +files/pch_support.cmake:
+  Playing with this borked package.
+  Not for use, it's really broken.
+
