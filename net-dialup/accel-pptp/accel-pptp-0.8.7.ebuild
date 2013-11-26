@@ -20,3 +20,10 @@ RDEPEND="${DEPEND}"
 CONFIG_CHECK="~PPTP"
 
 DOCS="README"
+
+src_configure() {
+	mycmakeargs=(
+		"-DPPP_PREFIX_DIR=/usr"
+	)
+	cmake-utils_src_configure
+}
