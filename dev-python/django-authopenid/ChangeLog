@@ -1,9 +1,0 @@
-# ChangeLog for dev-python/django-authopenid
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  03 Jun 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
-  -django-authopenid-0.9.6.ebuild, django-authopenid-1.0.1.ebuild,
-  +metadata.xml:
-  Cleanup, QA fixing
-
