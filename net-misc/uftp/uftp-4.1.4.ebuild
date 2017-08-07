@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/uftp/uftp-3.7.1.ebuild,v 1.1 2013/01/23 07:14:45 pinkbyte Exp $
 
 EAPI=5
 
@@ -15,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+server ssl"
 
-DEPEND="ssl? ( dev-libs/openssl )"
+DEPEND="ssl? ( dev-libs/openssl:0 )"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
