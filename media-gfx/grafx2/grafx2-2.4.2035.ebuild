@@ -1,22 +1,21 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
-EAPI=4
+EAPI=6
 
-DESCRIPTION="GrafX2 is a bitmap paint program inspired by the Amiga programs Deluxe Paint and Brilliance."
-HOMEPAGE="http://code.google.com/p/grafx2/"
-SRC_URI="http://grafx2.googlecode.com/files/${P}-src.tgz"
+DESCRIPTION="GrafX2 is a bitmap paint program inspired by the Amiga programs"
+HOMEPAGE="http://pulkomandy.tk/projects/GrafX2/wiki"
+SRC_URI="http://pulkomandy.tk/projects/GrafX2/downloads/21 -> ${P}-src.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="lua truetype"
 
-DEPEND="lua? ( dev-lang/lua )
+DEPEND="lua? ( dev-lang/lua:0 )
 	truetype? ( media-libs/freetype:2
 		media-libs/sdl-ttf:0 )
-	media-libs/libpng
+	media-libs/libpng:0
 	media-libs/libsdl
 	media-libs/sdl-image"
 RDEPEND="${DEPEND}"
