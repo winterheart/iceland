@@ -9,6 +9,7 @@
 Package Changes Analyzer is a tool for analyzing changes in Linux software packages
 </longdescription>
 <use>
+  <flag name='abi'>Add ABI changes check support</flag>
   <flag name='dpkg'>Add dpkg format support</flag>
   <flag name='rpm'>Add RPM formant support</flag>
 </use>
