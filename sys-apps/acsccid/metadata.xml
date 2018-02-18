@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>azamat.hackimov@gmail.com</email>
+<name>Azamat H. Hackimov</name>
+</maintainer>
+<longdescription lang="en">
+A PC/SC driver for ACS CCID smart card readers
+</longdescription>
+</pkgmetadata>
