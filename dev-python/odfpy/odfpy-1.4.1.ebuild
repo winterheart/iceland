@@ -1,12 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI=7
 
-# Classifier: Programming Language :: Python :: 2 :: Only
-# py3 fails one test, pypy anpother.
-# Notes on page of home repo reports support of python3.
-PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
+PYTHON_COMPAT=( python3_{7..9} )
 
 inherit distutils-r1
 
