@@ -5,7 +5,4 @@
 <email>azamat.hackimov@gmail.com</email>
 <name>Azamat H. Hackimov</name>
 </maintainer>
-<longdescription lang="en">
-A Python parser for MediaWiki wikicode.
-</longdescription>
 </pkgmetadata>
