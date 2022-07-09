@@ -8,7 +8,4 @@
 <email>azamat.hackimov@gmail.com</email>
 <name>Azamat H. Hackimov</name>
 </maintainer>
-<longdescription lang="en">
-Add grammatical parsing features to Perl 5.10 regexes
-</longdescription>
 </pkgmetadata>
