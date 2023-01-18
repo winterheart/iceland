@@ -1,9 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
-inherit cmake-utils linux-info
+inherit cmake linux-info
 
 DESCRIPTION="A high performance pptp plugin for pppd"
 HOMEPAGE="http://accel-ppp.org/"
@@ -23,5 +23,5 @@ src_configure() {
 	mycmakeargs=(
 		"-DPPP_PREFIX_DIR=/usr"
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }
