@@ -8,7 +8,7 @@
 <email>azamat.hackimov@gmail.com</email>
 <name>Azamat H. Hackimov</name>
 </maintainer>
-<longdescription lang="en">
-API to read and write the data in spreadsheet format
-</longdescription>
+<upstream>
+<remote-id type="github">pyexcel/pyexcel-io</remote-id>
+</upstream>
 </pkgmetadata>

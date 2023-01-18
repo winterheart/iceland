@@ -3,7 +3,8 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7..9} )
+DISTUTILS_USE_PEP517=setuptools
+PYTHON_COMPAT=( python3_{9..11} )
 inherit distutils-r1
 
 DESCRIPTION="API to read and write the data in spreadsheet format"
@@ -13,8 +14,8 @@ SRC_URI="https://github.com/pyexcel/pyexcel-io/archive/v${PV}.tar.gz -> ${P}.tar
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
+RESTRICT="test"
 DEPEND=""
 #"test? ( dev-python/nose[${PYTHON_USEDEP}] )"
 
