@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer type="project">
-<email>python@gentoo.org</email>
-</maintainer>
 <maintainer type="person">
 <email>azamat.hackimov@gmail.com</email>
 <name>Azamat H. Hackimov</name>
 </maintainer>
-<longdescription lang="en">
-Plugin to pyexcel for ODS support
-</longdescription>
+<upstream>
+<remote-id type="github">pyexcel/pyexcel-ods3</remote-id>
+</upstream>
 </pkgmetadata>
