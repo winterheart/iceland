@@ -6,7 +6,7 @@
 EAPI=8
 
 DIST_AUTHOR="DCONWAY"
-DIST_VERSION="1.048"
+DIST_VERSION="1.057"
 
 inherit perl-module
 
