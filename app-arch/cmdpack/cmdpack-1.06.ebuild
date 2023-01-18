@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 DESCRIPTION="Utilites from Neill Corlett, bin2ecm included"
 HOMEPAGE="https://github.com/chungy/cmdpack"
@@ -10,10 +10,8 @@ SRC_URI="https://github.com/chungy/cmdpack/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
-DEPEND="app-text/asciidoc"
-RDEPEND=""
+BDEPEND="app-text/asciidoc"
 
 src_prepare() {
 	default
