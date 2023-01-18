@@ -5,8 +5,8 @@
 <email>azamat.hackimov@gmail.com</email>
 <name>Azamat H. Hackimov</name>
 </maintainer>
-<longdescription lang="en">
-GrafX2 is a bitmap paint program inspired by the Amiga programs.
-</longdescription>
+<upstream>
+<remote-id type="gitlab">GrafX2/grafX2</remote-id>
+</upstream>
 </pkgmetadata>
 
