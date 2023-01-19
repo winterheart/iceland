@@ -1,0 +1,58 @@
+#!/sbin/openrc-run
+# Copyright 2023 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+: ${PATRONI_CONFIGFILE:=/etc/patroni/patroni.yml}
+
+LOGPATH=/var/log/${RC_SVCNAME}
+
+name="Patroni daemon"
+description="Patroni instance for PostgreSQL HA cluster"
+description_checkconfig="Check the configuration file"
+description_reload="Reload the configuration without exiting"
+
+command=/usr/bin/patroni
+command_args="${PATRONI_CONFIGFILE}"
+command_background=true
+command_user="postgres:postgres"
+
+pidfile="/run/patroni.pid"
+
+extra_commands="checkconfig"
+extra_started_commands="reload"
+
+start_stop_daemon_args="-1 ${LOGPATH}/${RC_SVCNAME}.log	-2 ${LOGPATH}/${RC_SVCNAME}.err.log"
+
+depend() {
+	need net
+}
+
+checkconfig() {
+	ebegin "Checking configfile (${PATRONI_CONFIGFILE})"
+	${command} --validate-config ${PATRONI_CONFIGFILE}
+	eend $? "Configuration error. Please fix configfile (${PATRONI_CONFIGFILE})"
+}
+
+start_pre() {
+	if [ ! -d "${LOGPATH}" ] ; then
+		mkdir -p "${LOGPATH}"
+		chown "${command_user}" "${LOGPATH}"
+	fi
+	if [ "${RC_CMD}" != "restart" ] ; then
+		checkconfig || return $?
+	fi
+}
+
+stop_pre() {
+	if [ "${RC_CMD}" = "restart" ] ; then
+		checkconfig || return $?
+	fi
+}
+
+reload() {
+	checkconfig || return $?
+	ebegin "Reloading ${RC_SVCNAME}"
+	start-stop-daemon --signal HUP --pidfile "${pidfile}"
+	eend $?
+}
+
