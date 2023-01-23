@@ -19,6 +19,8 @@ RDEPEND="
 	dev-python/boto3[${PYTHON_USEDEP}]
 	dev-python/python-etcd[${PYTHON_USEDEP}]
 	>=dev-python/click-4.1[${PYTHON_USEDEP}]
+	dev-python/kazoo[${PYTHON_USEDEP}]
+	dev-python/python-consul[${PYTHON_USEDEP}]
 	dev-python/cryptography[${PYTHON_USEDEP}]
 	>=dev-python/prettytable-0.7[${PYTHON_USEDEP}]
 	>=dev-python/psutil-2.0.0[${PYTHON_USEDEP}]
