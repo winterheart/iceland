@@ -16,6 +16,8 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 
+DEPEND="dev-python/dnspython[${PYTHON_USEDEP}]"
+RDEPEND="${DEPEND}"
 BDEPEND="
 	test? (
 		dev-python/pyopenssl[${PYTHON_USEDEP}]
