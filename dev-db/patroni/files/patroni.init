@@ -3,6 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 : ${PATRONI_CONFIGFILE:=/etc/patroni/patroni.yml}
+: ${PG_SOCKET_DIRECTORIES:=/run/postgresq}
 
 LOGPATH=/var/log/${RC_SVCNAME}
 
@@ -41,16 +42,25 @@ start_pre() {
 	if [ "${RC_CMD}" != "restart" ] ; then
 		checkconfig || return $?
 	fi
-}
-
-stop_pre() {
-	if [ "${RC_CMD}" = "restart" ] ; then
-		checkconfig || return $?
-	fi
+	# Taken from PostgreSQL init script
+	# Set the proper permission for the socket paths and create it if
+	# it doesn't exist.
+	set -f; IFS=','
+	local s
+	for s in ${PG_SOCKET_DIRECTORIES}; do
+		checkpath -d -m 1775 -o root:postgres "${s}"
+		if [ -e "${s%/}/.s.PGSQL.${configured_port}" ] ; then
+			eerror "Socket conflict."
+			eerror "A server is already listening on:"
+			eerror "    ${s%/}/.s.PGSQL.${configured_port}"
+			eerror "HINT: Change PGPORT to listen on a different socket."
+			return 1
+		fi
+	done
+	set +f; unset IFS
 }
 
 reload() {
-	checkconfig || return $?
 	ebegin "Reloading ${RC_SVCNAME}"
 	start-stop-daemon --signal HUP --pidfile "${pidfile}"
 	eend $?
