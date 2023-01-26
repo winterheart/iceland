@@ -16,7 +16,10 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="dev-python/dnspython[${PYTHON_USEDEP}]"
+DEPEND="
+	dev-python/dnspython[${PYTHON_USEDEP}]
+	dev-python/urllib3[${PYTHON_USEDEP}]
+"
 RDEPEND="${DEPEND}"
 BDEPEND="
 	test? (
