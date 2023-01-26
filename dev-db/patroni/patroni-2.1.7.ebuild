@@ -43,6 +43,8 @@ distutils_enable_sphinx docs --no-autodoc
 python_install_all() {
 	newdoc postgres0.yml patroni.yml
 	keepdir /etc/patroni
+	insinto /etc/logrotate.d
+	newins "${FILESDIR}/patroni.logrotate" patroni
 	newinitd "${FILESDIR}/patroni.init" patroni
 	newconfd "${FILESDIR}/patroni.conf" patroni
 
