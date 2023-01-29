@@ -14,25 +14,29 @@ SRC_URI="https://github.com/zalando/patroni/archive/refs/tags/v${PV}.tar.gz -> $
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
+IUSE="aws consul +etcd raft zookeeper"
+REQUIRED_USE="|| ( consul etcd raft zookeeper )"
 
 RDEPEND="
 	acct-group/postgres
 	acct-user/postgres
-	dev-python/boto3[${PYTHON_USEDEP}]
-	dev-python/python-etcd[${PYTHON_USEDEP}]
 	>=dev-python/click-4.1[${PYTHON_USEDEP}]
-	dev-python/kazoo[${PYTHON_USEDEP}]
-	dev-python/python-consul[${PYTHON_USEDEP}]
-	dev-python/cryptography[${PYTHON_USEDEP}]
 	>=dev-python/prettytable-0.7[${PYTHON_USEDEP}]
 	>=dev-python/psutil-2.0.0[${PYTHON_USEDEP}]
 	dev-python/psycopg:0[${PYTHON_USEDEP}]
-	dev-python/pysyncobj[${PYTHON_USEDEP}]
 	dev-python/python-dateutil[${PYTHON_USEDEP}]
 	dev-python/pyyaml[${PYTHON_USEDEP}]
 	>=dev-python/six-1.7[${PYTHON_USEDEP}]
 	>dev-python/urllib3-1.21[${PYTHON_USEDEP}]
 	>=dev-util/ydiff-1.2[${PYTHON_USEDEP}]
+	aws? ( dev-python/boto3[${PYTHON_USEDEP}] )
+	consul? ( dev-python/python-consul[${PYTHON_USEDEP}] )
+	etcd? ( dev-python/python-etcd[${PYTHON_USEDEP}] )
+	raft? (
+		dev-python/cryptography[${PYTHON_USEDEP}]
+		dev-python/pysyncobj[${PYTHON_USEDEP}]
+	)
+	zookeeper? ( dev-python/kazoo[${PYTHON_USEDEP}] )
 "
 BDEPEND="
 	test? (

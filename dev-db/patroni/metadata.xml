@@ -8,4 +8,11 @@
 <upstream>
 <remote-id type="github">zalando/patroni</remote-id>
 </upstream>
+<use>
+<flag name="aws">Add support for AWS</flag>
+<flag name="consul">Add support for Consul</flag>
+<flag name="etcd">Add support for etcd</flag>
+<flag name="raft">Add support for Raft protocol</flag>
+<flag name="zookeeper">Add support for Zookeeper</flag>
+</use>
 </pkgmetadata>
