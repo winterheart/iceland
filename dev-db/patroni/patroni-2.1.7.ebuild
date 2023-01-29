@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 RDEPEND="
+	acct-group/postgres
+	acct-user/postgres
 	dev-python/boto3[${PYTHON_USEDEP}]
 	dev-python/python-etcd[${PYTHON_USEDEP}]
 	>=dev-python/click-4.1[${PYTHON_USEDEP}]
@@ -43,6 +45,9 @@ distutils_enable_sphinx docs --no-autodoc
 python_install_all() {
 	newdoc postgres0.yml patroni.yml
 	keepdir /etc/patroni
+	fowners postgres:postgres /etc/patroni
+	fperms 0700 /etc/patroni
+
 	insinto /etc/logrotate.d
 	newins "${FILESDIR}/patroni.logrotate" patroni
 	newinitd "${FILESDIR}/patroni.init" patroni
