@@ -29,9 +29,11 @@ depend() {
 }
 
 checkconfig() {
-	ebegin "Checking configfile (${PATRONI_CONFIGFILE})"
-	${command} --validate-config ${PATRONI_CONFIGFILE}
-	eend $? "Configuration error. Please fix configfile (${PATRONI_CONFIGFILE})"
+	if [ "${PATRONI_FORCE_CHECKCONFIG}" = "yes" ]; then
+		ebegin "Checking configfile (${PATRONI_CONFIGFILE})"
+		${command} --validate-config ${PATRONI_CONFIGFILE}
+		eend $? "Configuration error. Please fix configfile (${PATRONI_CONFIGFILE})"
+	fi
 }
 
 start_pre() {
