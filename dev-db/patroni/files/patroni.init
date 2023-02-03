@@ -3,7 +3,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 : ${PATRONI_CONFIGFILE:=/etc/patroni/patroni.yml}
-: ${PG_SOCKET_DIRECTORIES:=/run/postgresq}
+: ${PG_SOCKET_DIRECTORIES:=/run/postgresql}
 
 LOGPATH=/var/log/${RC_SVCNAME}
 
@@ -60,6 +60,24 @@ start_pre() {
 		fi
 	done
 	set +f; unset IFS
+}
+
+stop() {
+	local seconds=$(( ${NICE_TIMEOUT} + ${FORCE_QUIT_TIMEOUT} ))
+	ebegin "Stopping Patroni (this can take up to ${seconds} seconds)"
+
+	local retries=SIGINT/${NICE_TIMEOUT}
+
+	if [ "${FORCE_QUIT}" = "YES" ] ; then
+		einfo "FORCE_QUIT enabled."
+		retries="${retries}/SIGTERM/${FORCE_QUIT_TIMEOUT}"
+	fi
+	# Loops through nice and force quit in one go.
+	start-stop-daemon --stop \
+		--user postgres:postgres \
+		--pidfile ${pidfile} \
+		--retry ${retries}
+	eend $?
 }
 
 reload() {
