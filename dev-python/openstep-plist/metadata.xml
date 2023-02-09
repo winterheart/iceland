@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>azamat.hackimov@gmail.com</email>
+<name>Azamat H. Hackimov</name>
+</maintainer>
+<upstream>
+<remote-id type="pypi">openstep-plist</remote-id>
+<remote-id type="github">fonttools/openstep-plist</remote-id>
+</upstream>
+</pkgmetadata>
