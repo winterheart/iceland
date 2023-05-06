@@ -1,0 +1,12 @@
+diff --git a/src/mwparserfromhell/parser/ctokenizer/definitions.c b/src/mwparserfromhell/parser/ctokenizer/definitions.c
+index 06612e4..981f387 100644
+--- a/src/mwparserfromhell/parser/ctokenizer/definitions.c
++++ b/src/mwparserfromhell/parser/ctokenizer/definitions.c
+@@ -78,7 +78,6 @@ static const char *PARSER_BLACKLIST[] = {
+     "categorytree",
+     "ce",
+     "chem",
+-    "gallery",
+     "graph",
+     "hiero",
+     "imagemap",
