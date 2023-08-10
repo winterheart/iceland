@@ -1,0 +1,21 @@
+#!/sbin/openrc-run
+
+name="Garage"
+description="Lightweight S3-compatible distributed object store"
+
+: ${cfgfile:="/etc/$RC_SVCNAME.toml"}
+: ${command_user:="garage"}
+
+command="/usr/bin/garage"
+command_args="-c $cfgfile server"
+command_background="yes"
+start_stop_daemon_args="--stderr /var/log/garage/${RC_SVCNAME}.log --stdout /var/log/garage/${RC_SVCNAME}.log"
+
+pidfile="/run/$RC_SVCNAME.pid"
+
+required_files="$cfgfile"
+
+depend() {
+	need localmount net
+	after firewall
+}

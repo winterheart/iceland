@@ -1,0 +1,19 @@
+# Configuration for /etc/init.d/garage
+
+# Path to the configuration file.
+#cfgfile="/etc/$RC_SVCNAME.toml"
+
+# Log to syslog instead of stderr. If you want to log into file instead,
+# set this to "no" and declare 'error_log=/var/log/garage.log'.
+#log_syslog=yes
+
+# The logging level for the garage and netapp modules; one of: "error", "warn",
+# "info", "debug" or "trace". For finer adjustments, set variable RUST_LOG
+# (see https://docs.rs/env_logger/latest/env_logger/#enabling-logging).
+#log_level="warn"
+
+# User (and group) to run garage as.
+#command_user="garage"
+
+# Uncomment to run with process supervisor.
+# supervisor=supervise-daemon
