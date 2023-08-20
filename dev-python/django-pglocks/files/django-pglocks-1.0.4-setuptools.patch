@@ -1,0 +1,24 @@
+From 55a4938644d05332a94ab61432715d04537d303b Mon Sep 17 00:00:00 2001
+From: Igor Raits <i.gnatenko.brain@gmail.com>
+Date: Sun, 30 Aug 2020 13:58:11 +0200
+Subject: [PATCH] setup.py: Use setuptools
+
+The distutils does not support `install_requires`.
+
+See: https://github.com/Xof/django-pglocks/pull/27
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index b794b13..cf60643 100755
+--- a/setup.py
++++ b/setup.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env python
+ 
+-from distutils.core import setup
++from setuptools import setup
+ 
+ import django_pglocks
+ 
