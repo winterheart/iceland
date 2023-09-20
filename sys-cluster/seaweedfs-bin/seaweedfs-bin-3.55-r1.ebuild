@@ -27,7 +27,7 @@ src_install() {
 		insinto /etc/seaweedfs
 		doins ${i}.toml
 	done
-	for i in filer master volume ; do
+	for i in filer master sync volume ; do
 		newconfd "${FILESDIR}/seaweedfs-${i}.confd" "seaweed-${i}"
 		newinitd "${FILESDIR}/seaweedfs-${i}.initd" "seaweed-${i}"
 	done

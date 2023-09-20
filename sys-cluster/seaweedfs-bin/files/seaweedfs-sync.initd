@@ -4,7 +4,7 @@
 
 supervisor=supervise-daemon
 
-name=weed-master
+name=weed-sync
 command="/opt/seaweedfs-bin/weed"
 command_args="${WEED_EXEC} ${WEED_OPTS}"
 
@@ -12,5 +12,7 @@ pidfile="/var/run/${RC_SVCNAME}.pid"
 respawn_delay=5
 
 depend() {
-	need net
+        need localmount
+        need net
 }
+

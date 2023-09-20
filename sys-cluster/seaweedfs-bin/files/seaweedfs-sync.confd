@@ -1,0 +1,6 @@
+# seaweedfs options
+
+WEED_EXEC="filer.sync"
+# See `weed master -h` for available options
+WEED_OPTS="-a 127.0.0.1:8888 -b 127.0.0.2:8888"
+
