@@ -1,0 +1,6 @@
+# seaweedfs options
+
+WEED_EXEC="filer"
+# See `weed filer -h` for available options
+WEED_OPTS="weed filer -port=8888 -master=localhost:9333"
+

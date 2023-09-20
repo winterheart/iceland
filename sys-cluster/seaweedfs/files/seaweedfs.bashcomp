@@ -1,0 +1,4 @@
+#!/bin/bash
+
+complete -C /usr/bin/weed weed
+

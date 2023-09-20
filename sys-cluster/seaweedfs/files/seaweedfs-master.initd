@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+# Copyright 2023 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+supervisor=supervise-daemon
+
+name=weed-master
+command="/usr/bin/weed"
+command_args="${WEED_EXEC} ${WEED_OPTS}"
+
+pidfile="/var/run/${RC_SVCNAME}.pid"
+respawn_delay=5
+
+depend() {
+	need net
+}
