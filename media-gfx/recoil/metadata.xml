@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>azamat.hackimov@gmail.com</email>
+    <name>Azamat H. Hackimov</name>
+  </maintainer>
+  <longdescription lang="en">
+Retro Computer Image Library decodes Amiga, Amstrad CPC, Apple II, Atari 8-bit,
+Atari Portfolio, Atari ST/TT/Falcon, BBC Micro, Commodore 16, Commodore 64,
+Commodore 128, Macintosh 128K, MSX, NEC PC-88, NEC PC-98, Oric, SAM Coupe,
+Sharp X68000, Timex 2048, TRS-80, TRS-80 Color Computer, ZX81 and ZX Spectrum
+picture formats.
+  </longdescription>
+  <upstream>
+    <remote-id type="sourceforge">recoil</remote-id>
+  </upstream>
+</pkgmetadata>
