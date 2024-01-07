@@ -1,0 +1,153 @@
+From d13ed990070346364795e0489bb867d53e8e87f4 Mon Sep 17 00:00:00 2001
+From: "Azamat H. Hackimov" <azamat.hackimov@gmail.com>
+Date: Thu, 4 Jan 2024 14:26:17 +0300
+Subject: [PATCH] Fixes to Makefile building
+
+Respect custom LDFLAGS on building. Don't redefine toolchain variables
+if they already defined. Add DESTDIR variable for installation process.
+---
+ Makefile | 64 ++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 32 insertions(+), 32 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 27d1a38..308bb8b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -11,25 +11,25 @@ MAGICK_CONFIG_PATH := $(wildcard $(shell MagickCore-config --exec-prefix)/etc/Im
+ CAN_INSTALL_MAGICK := $(and $(MAGICK_CODER_PATH),$(MAGICK_CONFIG_PATH))
+ endif
+ 
+-FUT = fut
+-CC = gcc
+-CFLAGS = -O2 -Wall
+-INSTALL = install
++FUT ?= fut
++CC ?= gcc
++CFLAGS ?= -O2 -Wall
++INSTALL ?= install
+ INSTALL_PROGRAM = $(INSTALL)
+ INSTALL_DATA = $(INSTALL) -m 644
+ 
+ all: recoil2png $(if $(CAN_INSTALL_MAGICK),imagemagick/recoil.so) recoil-mime.xml
+ 
+ recoil2png: recoil2png.c pngsave.c pngsave.h recoil-stdio.c recoil-stdio.h recoil.c recoil.h
+-	$(CC) $(CFLAGS) recoil2png.c pngsave.c recoil-stdio.c recoil.c -lpng -lz -o $@
++	$(CC) $(CFLAGS) $(LDFLAGS) recoil2png.c pngsave.c recoil-stdio.c recoil.c -lpng -lz -o $@
+ 
+ file-recoil: file-recoil.c recoil-stdio.c recoil-stdio.h recoil.c recoil.h formats.h
+-	$(CC) $(CFLAGS) `gimptool-2.0 --cflags` file-recoil.c recoil-stdio.c recoil.c -o $@ `gimptool-2.0 --libs`
++	$(CC) $(CFLAGS) $(LDFLAGS) `gimptool-2.0 --cflags` file-recoil.c recoil-stdio.c recoil.c -o $@ `gimptool-2.0 --libs`
+ 
+ ifdef CAN_INSTALL_MAGICK
+ imagemagick/recoil.so: imagemagick/recoilmagick.c recoil.c recoil.h formats.h
+ ifdef MAGICK_INCLUDE_PATH
+-	$(CC) $(CFLAGS) $(MAGICK_CFLAGS) -I$(MAGICK_INCLUDE_PATH) imagemagick/recoilmagick.c recoil.c -shared $(MAGICK_LDFLAGS) -ldl $(MAGICK_LIBS) -o $@
++	$(CC) $(CFLAGS) $(LDFLAGS) $(MAGICK_CFLAGS) -I$(MAGICK_INCLUDE_PATH) imagemagick/recoilmagick.c recoil.c -shared $(MAGICK_LDFLAGS) -ldl $(MAGICK_LIBS) -o $@
+ else
+ 	@echo "\nDetected ImageMagick version $(MAGICK_VERSION) on your system."
+ 	@echo "To build RECOIL coder for ImageMagick,"
+@@ -46,7 +46,7 @@ formats.h: formats.h.xsl formats.xml
+ 	$(FUT) -o $*.c $<
+ 
+ benchmark: benchmark.c recoil-stdio.c recoil-stdio.h recoil.c recoil.h
+-	$(CC) $(CFLAGS) benchmark.c recoil-stdio.c recoil.c -o $@
++	$(CC) $(CFLAGS) $(LDFLAGS) benchmark.c recoil-stdio.c recoil.c -o $@
+ 
+ clean:
+ 	rm -f recoil2png file-recoil imagemagick/recoil.so imagemagick/coder.xml.new formats.h recoil-mime.xml benchmark Xrecoil.usr
+@@ -56,17 +56,17 @@ install: install-thumbnailer $(if $(CAN_INSTALL_MAGICK),install-magick)
+ uninstall: uninstall-thumbnailer $(if $(CAN_INSTALL_MAGICK),uninstall-magick)
+ 
+ install-recoil2png: recoil2png recoil2png.1
+-	mkdir -p $(PREFIX)/bin $(PREFIX)/share/man/man1
+-	$(INSTALL_PROGRAM) recoil2png $(PREFIX)/bin/recoil2png
+-	$(INSTALL_DATA) recoil2png.1 $(PREFIX)/share/man/man1/recoil2png.1
++	mkdir -p $(DESTDIR)/$(PREFIX)/bin $(DESTDIR)/$(PREFIX)/share/man/man1
++	$(INSTALL_PROGRAM) recoil2png $(DESTDIR)/$(PREFIX)/bin/recoil2png
++	$(INSTALL_DATA) recoil2png.1 $(DESTDIR)/$(PREFIX)/share/man/man1/recoil2png.1
+ 
+ uninstall-recoil2png:
+-	rm -f $(PREFIX)/bin/recoil2png $(PREFIX)/share/man/man1/recoil2png.1
++	rm -f $(DESTDIR)/$(PREFIX)/bin/recoil2png $(DESTDIR)/$(PREFIX)/share/man/man1/recoil2png.1
+ 
+ install-gimp: file-recoil
+ ifdef BUILDING_PACKAGE
+-	mkdir -p $(libdir)/gimp/2.0/plug-ins/file-recoil
+-	$(INSTALL_PROGRAM) $< $(libdir)/gimp/2.0/plug-ins/file-recoil/file-recoil
++	mkdir -p $(DESTDIR)/$(libdir)/gimp/2.0/plug-ins/file-recoil
++	$(INSTALL_PROGRAM) $< $(DESTDIR)/$(libdir)/gimp/2.0/plug-ins/file-recoil/file-recoil
+ else
+ 	gimptool-2.0 --install-admin-bin $<
+ endif
+@@ -78,15 +78,15 @@ ifdef CAN_INSTALL_MAGICK
+ 
+ install-magick: imagemagick/updatecoder.pl formats.xml imagemagick/recoil.so
+ 	perl imagemagick/updatecoder.pl formats.xml <$(MAGICK_CONFIG_PATH)/coder.xml >imagemagick/coder.xml.new
+-	mkdir -p $(MAGICK_CODER_PATH)
+-	$(INSTALL) imagemagick/recoil.so $(MAGICK_CODER_PATH)/recoil.so
+-	echo "dlname='recoil.so'" >$(MAGICK_CODER_PATH)/recoil.la
+-	mv imagemagick/coder.xml.new $(MAGICK_CONFIG_PATH)/coder.xml
++	mkdir -p $(DESTDIR)/$(MAGICK_CODER_PATH)
++	$(INSTALL) imagemagick/recoil.so $(DESTDIR)/$(MAGICK_CODER_PATH)/recoil.so
++	echo "dlname='recoil.so'" > $(DESTDIR)/$(MAGICK_CODER_PATH)/recoil.la
++	mv imagemagick/coder.xml.new $(DESTDIR)/$(MAGICK_CONFIG_PATH)/coder.xml
+ 
+ uninstall-magick:
+-	perl imagemagick/updatecoder.pl <$(MAGICK_CONFIG_PATH)/coder.xml >imagemagick/coder.xml.new
+-	rm -f $(MAGICK_CODER_PATH)/recoil.la $(MAGICK_CODER_PATH)/recoil.so
+-	mv imagemagick/coder.xml.new $(MAGICK_CONFIG_PATH)/coder.xml
++	perl imagemagick/updatecoder.pl < $(DESTDIR)/$(MAGICK_CONFIG_PATH)/coder.xml >imagemagick/coder.xml.new
++	rm -f $(DESTDIR)/$(MAGICK_CODER_PATH)/recoil.la $(DESTDIR)/$(MAGICK_CODER_PATH)/recoil.so
++	mv imagemagick/coder.xml.new $(DESTDIR)/$(MAGICK_CONFIG_PATH)/coder.xml
+ 
+ endif
+ 
+@@ -94,22 +94,22 @@ recoil-mime.xml: recoil-mime.xsl formats.xml
+ 	xsltproc -o $@ recoil-mime.xsl formats.xml
+ 
+ install-mime: recoil-mime.xml
+-	mkdir -p $(PREFIX)/share/mime/packages
+-	$(INSTALL_DATA) recoil-mime.xml $(PREFIX)/share/mime/packages/recoil-mime.xml
++	mkdir -p $(DESTDIR)/$(PREFIX)/share/mime/packages
++	$(INSTALL_DATA) recoil-mime.xml $(DESTDIR)/$(PREFIX)/share/mime/packages/recoil-mime.xml
+ ifndef BUILDING_PACKAGE
+-	update-mime-database $(PREFIX)/share/mime
++	update-mime-database $(DESTDIR)/$(PREFIX)/share/mime
+ endif
+ 
+ uninstall-mime:
+-	rm -f $(PREFIX)/share/mime/packages/recoil-mime.xml
+-	update-mime-database $(PREFIX)/share/mime
++	rm -f $(DESTDIR)/$(PREFIX)/share/mime/packages/recoil-mime.xml
++	update-mime-database $(DESTDIR)/$(PREFIX)/share/mime
+ 
+ install-thumbnailer: install-mime install-recoil2png
+-	mkdir -p $(PREFIX)/share/thumbnailers
+-	xsltproc -o $(PREFIX)/share/thumbnailers/recoil.thumbnailer recoil.thumbnailer.xsl formats.xml
++	mkdir -p $(DESTDIR)/$(PREFIX)/share/thumbnailers
++	xsltproc -o $(DESTDIR)/$(PREFIX)/share/thumbnailers/recoil.thumbnailer recoil.thumbnailer.xsl formats.xml
+ 
+ uninstall-thumbnailer:
+-	rm -f $(PREFIX)/share/thumbnailers/recoil.thumbnailer
++	rm -f $(DESTDIR)/$(PREFIX)/share/thumbnailers/recoil.thumbnailer
+ 
+ install-gnome2-thumbnailer: install-mime install-recoil2png gnome2-thumbnailer.xsl formats.xml
+ 	for p in `xsltproc gnome2-thumbnailer.xsl formats.xml`; do \
+@@ -126,11 +126,11 @@ Xrecoil.usr: Xrecoil.c formats.h recoil-stdio.c recoil-stdio.h recoil.c recoil.h
+ 	$(CC) $(CFLAGS) Xrecoil.c recoil-stdio.c recoil.c -shared -fPIC -o $@
+ 
+ install-xnview: Xrecoil.usr
+-	mkdir -p $(XNVIEW)/Plugins
+-	$(INSTALL_PROGRAM) Xrecoil.usr $(XNVIEW)/Plugins/Xrecoil.usr
++	mkdir -p $(DESTDIR)/$(XNVIEW)/Plugins
++	$(INSTALL_PROGRAM) Xrecoil.usr $(DESTDIR)/$(XNVIEW)/Plugins/Xrecoil.usr
+ 
+ uninstall-xnview:
+-	rm -f /opt/XnView/Plugins/Xrecoil.usr
++	rm -f $(DESTDIR)/$(XNVIEW)/Plugins/Xrecoil.usr
+ 
+ deb:
+ 	debuild -b -us -uc
+-- 
+2.41.0
+
