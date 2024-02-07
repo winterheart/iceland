@@ -6,7 +6,7 @@ EAPI=8
 inherit xdg-utils
 
 DESCRIPTION="Retro Computer Image Library"
-HOMEPAGE="http://recoil.sourceforge.net/"
+HOMEPAGE="https://recoil.sourceforge.net/"
 SRC_URI="https://downloads.sourceforge.net/project/${PN}/${PN}/${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
