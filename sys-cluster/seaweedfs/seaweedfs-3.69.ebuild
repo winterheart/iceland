@@ -8,12 +8,13 @@ inherit bash-completion-r1 go-module
 DESCRIPTION="A fast distributed storage system ('large disk' version)"
 HOMEPAGE="https://github.com/seaweedfs/seaweedfs"
 SRC_URI="https://github.com/seaweedfs/seaweedfs/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz
-	https://repos.s3.b612.lfstrm.tv/gentoo/distfiles/${P}-vendor.tar.xz"
+	https://repos.s3.m9.lfstrm.tv/gentoo/distfiles/${P}-vendor.tar.xz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
+BDEPEND=">=dev-lang/go-1.22:="
 RDEPEND="!sys-cluster/seaweedfs-bin"
 
 src_compile() {
