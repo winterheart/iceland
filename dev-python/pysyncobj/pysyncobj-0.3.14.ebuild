@@ -12,7 +12,7 @@ HOMEPAGE="
 	https://github.com/bakwc/PySyncObj
 	https://pypi.org/project/pysyncobj/
 "
-SRC_URI="https://github.com/bakwc/PySyncObj/archive/refs/tags/${PV}.tar.gz -> ${P}.gh.tar.gz"
+SRC_URI="https://github.com/bakwc/PySyncObj/archive/refs/tags/v${PV}.tar.gz -> ${P}.gh.tar.gz"
 S="${WORKDIR}/PySyncObj-${PV}"
 
 LICENSE="MIT"
