@@ -1,0 +1,230 @@
+From https://github.com/jplana/python-etcd/pull/289
+From: "Benjamin A. Beasley" <code@musicinmybrain.net>
+Date: Wed, 7 Aug 2024 20:08:15 -0400
+Subject: [PATCH] Replace removed TestCase method aliases
+
+Particularly, replace assertEquals() with assertEqual().
+
+These were deprecated for many years, and were removed in Python 3.12.
+See: https://docs.python.org/3.12/whatsnew/3.12.html#id3
+--- a/src/etcd/tests/integration/test_simple.py
++++ b/src/etcd/tests/integration/test_simple.py
+@@ -61,7 +61,7 @@ def _get_exe(cls):
+ class TestSimple(EtcdIntegrationTest):
+     def test_machines(self):
+         """INTEGRATION: retrieve machines"""
+-        self.assertEquals(self.client.machines[0], "http://127.0.0.1:6001")
++        self.assertEqual(self.client.machines[0], "http://127.0.0.1:6001")
+ 
+     def test_leader(self):
+         """INTEGRATION: retrieve leader"""
+@@ -81,20 +81,20 @@ def test_get_set_delete(self):
+         self.assertFalse("/test_set" in self.client)
+ 
+         set_result = self.client.set("/test_set", "test-key")
+-        self.assertEquals("set", set_result.action.lower())
+-        self.assertEquals("/test_set", set_result.key)
+-        self.assertEquals("test-key", set_result.value)
++        self.assertEqual("set", set_result.action.lower())
++        self.assertEqual("/test_set", set_result.key)
++        self.assertEqual("test-key", set_result.value)
+ 
+         self.assertTrue("/test_set" in self.client)
+ 
+         get_result = self.client.get("/test_set")
+-        self.assertEquals("get", get_result.action.lower())
+-        self.assertEquals("/test_set", get_result.key)
+-        self.assertEquals("test-key", get_result.value)
++        self.assertEqual("get", get_result.action.lower())
++        self.assertEqual("/test_set", get_result.key)
++        self.assertEqual("test-key", get_result.value)
+ 
+         delete_result = self.client.delete("/test_set")
+-        self.assertEquals("delete", delete_result.action.lower())
+-        self.assertEquals("/test_set", delete_result.key)
++        self.assertEqual("delete", delete_result.action.lower())
++        self.assertEqual("/test_set", delete_result.key)
+ 
+         self.assertFalse("/test_set" in self.client)
+ 
+@@ -111,7 +111,7 @@ def test_update(self):
+         c.value = int(c.value) + 3
+         self.client.update(c)
+         newres = self.client.get("/foo")
+-        self.assertEquals(newres.value, "6")
++        self.assertEqual(newres.value, "6")
+         self.assertRaises(ValueError, self.client.update, c)
+ 
+     def test_retrieve_subkeys(self):
+@@ -121,17 +121,17 @@ def test_retrieve_subkeys(self):
+         set_result = self.client.write("/subtree/test_set2", "test-key3")
+         get_result = self.client.read("/subtree", recursive=True)
+         result = [subkey.value for subkey in get_result.leaves]
+-        self.assertEquals(["test-key1", "test-key2", "test-key3"].sort(), result.sort())
++        self.assertEqual(["test-key1", "test-key2", "test-key3"].sort(), result.sort())
+ 
+     def test_directory_ttl_update(self):
+         """INTEGRATION: should be able to update a dir TTL"""
+         self.client.write("/dir", None, dir=True, ttl=30)
+         res = self.client.write("/dir", None, dir=True, ttl=31, prevExist=True)
+-        self.assertEquals(res.ttl, 31)
++        self.assertEqual(res.ttl, 31)
+         res = self.client.get("/dir")
+         res.ttl = 120
+         new_res = self.client.update(res)
+-        self.assertEquals(new_res.ttl, 120)
++        self.assertEqual(new_res.ttl, 120)
+ 
+ 
+ class TestErrors(EtcdIntegrationTest):
+@@ -194,12 +194,12 @@ def test_reconnect(self):
+         set_result = self.client.set("/test_set", "test-key1")
+         get_result = self.client.get("/test_set")
+ 
+-        self.assertEquals("test-key1", get_result.value)
++        self.assertEqual("test-key1", get_result.value)
+ 
+         self.processHelper.kill_one(0)
+ 
+         get_result = self.client.get("/test_set")
+-        self.assertEquals("test-key1", get_result.value)
++        self.assertEqual("test-key1", get_result.value)
+ 
+     def test_reconnect_with_several_hosts_passed(self):
+         """INTEGRATION: receive several hosts at connection setup."""
+@@ -211,12 +211,12 @@ def test_reconnect_with_several_hosts_passed(self):
+         set_result = self.client.set("/test_set", "test-key1")
+         get_result = self.client.get("/test_set")
+ 
+-        self.assertEquals("test-key1", get_result.value)
++        self.assertEqual("test-key1", get_result.value)
+ 
+         self.processHelper.kill_one(0)
+ 
+         get_result = self.client.get("/test_set")
+-        self.assertEquals("test-key1", get_result.value)
++        self.assertEqual("test-key1", get_result.value)
+ 
+     def test_reconnect_not_allowed(self):
+         """INTEGRATION: fail on server kill if not allow_reconnect"""
+@@ -236,7 +236,7 @@ def test_reconnet_fails(self):
+         set_result = self.client.set("/test_set", "test-key1")
+ 
+         get_result = self.client.get("/test_set")
+-        self.assertEquals("test-key1", get_result.value)
++        self.assertEqual("test-key1", get_result.value)
+         self.processHelper.kill_one(2)
+         self.processHelper.kill_one(1)
+         self.processHelper.kill_one(0)
+@@ -321,7 +321,7 @@ def watch_value(key, index, queue):
+         for i in range(0, 3):
+             value = queue.get()
+             log.debug("index: %d: %s" % (i, value))
+-            self.assertEquals("test-value%d" % i, value)
++            self.assertEqual("test-value%d" % i, value)
+ 
+         watcher.join(timeout=5)
+         proc.join(timeout=5)
+@@ -402,7 +402,7 @@ def watch_value(key, index, queue):
+         for i in range(0, 3):
+             value = queue.get()
+             log.debug("index: %d: %s" % (i, value))
+-            self.assertEquals("test-value%d" % i, value)
++            self.assertEqual("test-value%d" % i, value)
+ 
+         watcher.join(timeout=5)
+         proc.join(timeout=5)
+--- a/src/etcd/tests/integration/test_ssl.py
++++ b/src/etcd/tests/integration/test_ssl.py
+@@ -165,10 +165,10 @@ def test_get_set_authenticated(self):
+         )
+ 
+         set_result = client.set("/test_set", "test-key")
+-        self.assertEquals("set", set_result.action.lower())
+-        self.assertEquals("/test_set", set_result.key)
+-        self.assertEquals("test-key", set_result.value)
++        self.assertEqual("set", set_result.action.lower())
++        self.assertEqual("/test_set", set_result.key)
++        self.assertEqual("test-key", set_result.value)
+         get_result = client.get("/test_set")
+-        self.assertEquals("get", get_result.action.lower())
+-        self.assertEquals("/test_set", get_result.key)
+-        self.assertEquals("test-key", get_result.value)
++        self.assertEqual("get", get_result.action.lower())
++        self.assertEqual("/test_set", get_result.key)
++        self.assertEqual("test-key", get_result.value)
+--- a/src/etcd/tests/test_auth.py
++++ b/src/etcd/tests/test_auth.py
+@@ -34,7 +34,7 @@ def tearDown(self):
+ class EtcdUserTest(TestEtcdAuthBase):
+     def test_names(self):
+         u = auth.EtcdUser(self.client, "test_user")
+-        self.assertEquals(u.names, ["root"])
++        self.assertEqual(u.names, ["root"])
+ 
+     def test_read(self):
+         u = auth.EtcdUser(self.client, "root")
+@@ -45,10 +45,10 @@ def test_read(self):
+             self.fail("reading the root user raised an exception")
+ 
+         # roles for said user are fetched
+-        self.assertEquals(u.roles, set(["root"]))
++        self.assertEqual(u.roles, set(["root"]))
+ 
+         # The user is correctly rendered out
+-        self.assertEquals(u._to_net(), [{"user": "root", "password": None, "roles": ["root"]}])
++        self.assertEqual(u._to_net(), [{"user": "root", "password": None, "roles": ["root"]}])
+ 
+         # An inexistent user raises the appropriate exception
+         u = auth.EtcdUser(self.client, "user.does.not.exist")
+@@ -75,7 +75,7 @@ def test_write_and_delete(self):
+         except:
+             self.fail("creating a user doesn't work")
+         # Password gets wiped
+-        self.assertEquals(u.password, None)
++        self.assertEqual(u.password, None)
+         u.read()
+         # Verify we can log in as this user and access the auth (it has the
+         # root role)
+@@ -86,8 +86,8 @@ def test_write_and_delete(self):
+         except etcd.EtcdInsufficientPermissions:
+             self.fail("Reading auth with the new user is not possible")
+ 
+-        self.assertEquals(u.name, "test_user")
+-        self.assertEquals(u.roles, set(["guest", "root"]))
++        self.assertEqual(u.name, "test_user")
++        self.assertEqual(u.roles, set(["guest", "root"]))
+         # set roles as a list, it works!
+         u.roles = ["guest", "test_group"]
+         # We need this or the new API will return an internal error
+@@ -132,9 +132,9 @@ def test_read(self):
+         #     between etcd-2.2.2 and 2.2.5.  They're equivalent so allow
+         #     for both.
+         if "/*" in r.acls:
+-            self.assertEquals(r.acls, {"/*": "RW"})
++            self.assertEqual(r.acls, {"/*": "RW"})
+         else:
+-            self.assertEquals(r.acls, {"*": "RW"})
++            self.assertEqual(r.acls, {"*": "RW"})
+         # We can actually skip most other read tests as they are common
+         # with EtcdUser
+ 
+@@ -148,15 +148,15 @@ def test_write_and_delete(self):
+ 
+         r1 = auth.EtcdRole(self.client, "test_role")
+         r1.read()
+-        self.assertEquals(r1.acls, r.acls)
++        self.assertEqual(r1.acls, r.acls)
+         r.revoke("/test/*", "W")
+         r.write()
+         r1.read()
+-        self.assertEquals(r1.acls, {"*": "R", "/test/*": "R"})
++        self.assertEqual(r1.acls, {"*": "R", "/test/*": "R"})
+         r.grant("/pub/*", "RW")
+         r.write()
+         r1.read()
+-        self.assertEquals(r1.acls["/pub/*"], "RW")
++        self.assertEqual(r1.acls["/pub/*"], "RW")
+         # All other exceptions are tested by the user tests
+         r1.name = None
+         self.assertRaises(etcd.EtcdException, r1.write)
