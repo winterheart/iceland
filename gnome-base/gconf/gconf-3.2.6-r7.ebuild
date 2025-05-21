@@ -7,7 +7,7 @@ GNOME_ORG_MODULE="GConf"
 PYTHON_COMPAT=( python3_{10..13} )
 PYTHON_REQ_USE="xml(+)"
 
-inherit gnome2 multilib-minimal python-single-r1
+inherit autotools gnome2 multilib-minimal python-single-r1
 
 DESCRIPTION="GNOME configuration system and daemon"
 HOMEPAGE="https://projects.gnome.org/gconf/"
@@ -37,32 +37,31 @@ DEPEND="${RDEPEND}
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
+PATCHES=(
+	# Do not start gconfd when installing schemas, fix bug #238276, upstream #631983
+	"${FILESDIR}/${PN}-2.24.0-no-gconfd.patch"
+	# Do not crash in gconf_entry_set_value() when entry pointer is NULL, upstream #631985
+	"${FILESDIR}/${PN}-2.28.0-entry-set-value-sigsegv.patch"
+	# mconvert: enable recursive scheme lookup and fix a crasher
+	"${FILESDIR}/${P}-mconvert-crasher.patch"
+	# dbus: Don't spew to console when unable to connect to dbus daemon
+	"${FILESDIR}/${P}-spew-console-error.patch"
+	# gsettings-data-convert: Warn (and fix) invalid schema paths
+	"${FILESDIR}/${P}-gsettings-data-convert-paths.patch"
+	# gsettings-data-convert: Migrate from Python 2 to 3.
+	"${FILESDIR}/${P}-python3.patch"
+)
+
 pkg_setup() {
 	kill_gconf
 	python-single-r1_pkg_setup
 }
 
 src_prepare() {
-	# Do not start gconfd when installing schemas, fix bug #238276, upstream #631983
-	eapply "${FILESDIR}/${PN}-2.24.0-no-gconfd.patch"
-
-	# Do not crash in gconf_entry_set_value() when entry pointer is NULL, upstream #631985
-	eapply "${FILESDIR}/${PN}-2.28.0-entry-set-value-sigsegv.patch"
-
-	# From 'master'
-	# mconvert: enable recursive scheme lookup and fix a crasher
-	eapply "${FILESDIR}/${P}-mconvert-crasher.patch"
-
-	# dbus: Don't spew to console when unable to connect to dbus daemon
-	eapply "${FILESDIR}/${P}-spew-console-error.patch"
-
-	# gsettings-data-convert: Warn (and fix) invalid schema paths
-	eapply "${FILESDIR}/${P}-gsettings-data-convert-paths.patch"
-
-	# gsettings-data-convert: Migrate from Python 2 to 3.
-	eapply "${FILESDIR}/${P}-python3.patch"
-
-	gnome2_src_prepare
+	default
+	sed -i -e ":examples:d" configure.ac || die
+	sed -i -e "s:examples::g" Makefile.am || die
+	eautoreconf
 }
 
 multilib_src_configure() {
