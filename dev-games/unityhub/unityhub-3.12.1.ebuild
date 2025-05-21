@@ -7,7 +7,7 @@ inherit desktop rpm xdg wrapper
 
 DESCRIPTION="Official Unity Hub application"
 HOMEPAGE="https://unity.com/"
-SRC_URI="https://hub-dist.unity3d.com/artifactory/hub-rpm-prod-local/unity/stable/${PN}_x86_64/${PN}_x86_64-${PV}.rpm"
+SRC_URI="https://hub.unity3d.com/linux/repos/rpm/stable/unityhub_x86_64/${PN}-x86_64-${PV}.rpm"
 
 LICENSE="CC0-1.0"
 SLOT="0"
