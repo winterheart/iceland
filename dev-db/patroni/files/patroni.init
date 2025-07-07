@@ -41,9 +41,6 @@ start_pre() {
 		mkdir -p "${LOGPATH}"
 		chown "${command_user}" "${LOGPATH}"
 	fi
-	if [ "${RC_CMD}" != "restart" ] ; then
-		checkconfig || return $?
-	fi
 	# Taken from PostgreSQL init script
 	# Set the proper permission for the socket paths and create it if
 	# it doesn't exist.
