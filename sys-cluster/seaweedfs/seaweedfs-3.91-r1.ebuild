@@ -17,6 +17,10 @@ KEYWORDS="~amd64"
 BDEPEND=">=dev-lang/go-1.24:="
 RDEPEND="!sys-cluster/seaweedfs-bin"
 
+PATCHES=(
+	"${FILESDIR}/seaweedfs-3.91-mongodb-fix.patch"
+)
+
 src_compile() {
 	ego build -tags production,5BytesOffset -o weed/weed ./weed
 }
