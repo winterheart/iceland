@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+# Copyright 2025 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="mimir daemon"
+description="Mimir Daemon"
+command=/usr/bin/mimir
+
+configfile="${MIMIR_CONF:-/etc/mimir/mimir.yaml}"
+command_args=command_args="-config.file=${configfile} ${MIMIR_OPTS}"
+command_background=yes
+command_user=mimir:grafana
+make_pidfile=yes
+
+pidfile=/run/mimir.pid
+
+depend() {
+	need net
+}
+
