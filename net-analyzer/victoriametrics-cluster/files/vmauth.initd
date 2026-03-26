@@ -1,0 +1,31 @@
+#!/sbin/openrc-run
+# Copyright 2026 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="vmauth daemon"
+description="VictoriaMetrics vmauth daemon"
+description_reload="Reload the vmauth configuration."
+command=/usr/bin/vmauth
+command_user=victoriametrics:victoriametrics
+command_background=yes
+pidfile="/run/$RC_SVCNAME.pid"
+command_args="${vmauth_args} --auth.config=/etc/victoriametrics/vmauth.yml --loggerDisableTimestamps --loggerOutput=stdout"
+extra_started_commands="reload"
+
+depend() {
+	need net
+	after firewall
+}
+
+start_pre() {
+	if [ -n "$error_log" ]; then
+		checkpath -f -o $command_user "$error_log"
+	fi
+}
+
+reload() {
+	ebegin "Reload vmauth"
+	start-stop-daemon --signal SIGHUP --pidfile "${pidfile}"
+	eend $? "Failed to reload vmauth configuration"
+
+}

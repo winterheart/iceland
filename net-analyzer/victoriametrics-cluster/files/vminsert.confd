@@ -1,0 +1,9 @@
+vminsert_args="--storageNode='127.0.0.1:8400'"
+
+# Uncomment both lines if you want logs to go to syslog
+#error_logger="logger -t $RC_SVCNAME"
+#rc_need=logger
+
+# Uncomment to redirect logs to a log file
+#error_log="/var/log/vminsert.log"
+

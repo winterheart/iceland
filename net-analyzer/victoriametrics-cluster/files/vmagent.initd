@@ -1,0 +1,35 @@
+#!/sbin/openrc-run
+# Copyright 2026 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="vmagent daemon"
+description="VictoriaMetrics vmagent daemon"
+description_reload="Reload the vmagent configuration."
+command=/usr/bin/vmagent
+command_user=victoriametrics:victoriametrics
+command_background=yes
+
+vmagent_tmp_datapath="/var/lib/victoriametrics/vmagent-remotewrite-data"
+
+pidfile="/run/$RC_SVCNAME.pid"
+command_args="${vminsert_args} --remoteWrite.tmpDataPath=${vmagent_tmp_datapath} --loggerDisableTimestamps --loggerOutput=stdout"
+extra_started_commands="reload"
+
+depend() {
+	need net
+	after firewall
+}
+
+start_pre() {
+	checkpath -d -o $command_user "${vmagent_tmp_datapath}"
+	if [ -n "$error_log" ]; then
+		checkpath -f -o $command_user "$error_log"
+	fi
+}
+
+reload() {
+	ebegin "Reload vminsert"
+	start-stop-daemon --signal SIGHUP --pidfile "${pidfile}"
+	eend $? "Failed to reload vminsert configuration"
+
+}
