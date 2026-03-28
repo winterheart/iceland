@@ -8,9 +8,4 @@
 <upstream>
 <remote-id type="github">VictoriaMetrics/VictoriaMetrics</remote-id>
 </upstream>
-<use>
-<flag name="agent">Install vmagent service</flag>
-<flag name="server">Install server-related services</flag>
-<flag name="tools">Install misc tools</flag>
-</use>
 </pkgmetadata>
