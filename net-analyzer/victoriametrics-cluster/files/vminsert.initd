@@ -8,7 +8,7 @@ description_reload="Reload the vminsert configuration."
 command=/usr/bin/vminsert
 command_user=victoriametrics:victoriametrics
 command_background=yes
-pidfile="/run/$RC_SVCNAME.pid"
+pidfile="/run/${RC_SVCNAME}.pid"
 command_args="${vminsert_args} --loggerDisableTimestamps --loggerOutput=stdout"
 extra_started_commands="reload"
 
@@ -24,7 +24,7 @@ start_pre() {
 }
 
 reload() {
-	ebegin "Reload vminsert"
+	ebegin "Reload ${RC_SVCNAME}"
 	start-stop-daemon --signal SIGHUP --pidfile "${pidfile}"
 	eend $? "Failed to reload vminsert configuration"
 

@@ -8,8 +8,8 @@ description_reload="Reload the vmselect configuration."
 command=/usr/bin/vmselect
 command_user=victoriametrics:victoriametrics
 command_background=yes
-pidfile="/run/$RC_SVCNAME.pid"
-command_args="${vmselect_args} --cacheDataPath=/var/lib/victoriametrics --loggerDisableTimestamps --loggerOutput=stdout"
+pidfile="/run/${RC_SVCNAME}.pid"
+command_args="${vmselect_args} --loggerDisableTimestamps --loggerOutput=stdout"
 extra_started_commands="reload"
 
 depend() {
@@ -24,7 +24,7 @@ start_pre() {
 }
 
 reload() {
-	ebegin "Reload vmselect"
+	ebegin "Reload ${RC_SVCNAME}"
 	start-stop-daemon --signal SIGHUP --pidfile "${pidfile}"
 	eend $? "Failed to reload vmselect configuration"
 

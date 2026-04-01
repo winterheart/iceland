@@ -9,10 +9,8 @@ command=/usr/bin/vmstorage
 command_user=victoriametrics:victoriametrics
 command_background=yes
 
-vmstorage_datapath="/var/lib/victoriametrics/storage"
-
-pidfile="/run/$RC_SVCNAME.pid"
-command_args="${vmstorage_args} --storageDataPath=${vmstorage_datapath} --loggerDisableTimestamps --loggerOutput=stdout"
+pidfile="/run/${RC_SVCNAME}.pid"
+command_args="${vmstorage_args} --loggerDisableTimestamps --loggerOutput=stdout"
 extra_started_commands="reload"
 
 depend() {
@@ -27,7 +25,7 @@ start_pre() {
 }
 
 reload() {
-	ebegin "Reload vmstorage"
+	ebegin "Reload ${RC_SVCNAME}"
 	start-stop-daemon --signal SIGHUP --pidfile "${pidfile}"
 	eend $? "Failed to reload vmselect configuration"
 

@@ -1,4 +1,4 @@
-vmselect_args="--storageNode='127.0.0.1:8401'"
+vmselect_args="--storageNode='127.0.0.1:8401' --cacheDataPath=/var/lib/victoriametrics"
 
 # Uncomment both lines if you want logs to go to syslog
 #error_logger="logger -t $RC_SVCNAME"

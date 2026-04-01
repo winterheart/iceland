@@ -1,4 +1,4 @@
-vmstorage_args="--vminsertAddr=':8400' --vmselectAddr=':8401'"
+vmstorage_args="--storageDataPath=/var/lib/victoriametrics/storage --vminsertAddr=':8400' --vmselectAddr=':8401'"
 
 # Uncomment both lines if you want logs to go to syslog
 #error_logger="logger -t $RC_SVCNAME"

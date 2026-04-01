@@ -1,4 +1,4 @@
-vmauth_args="--httpListenAddr=':8427'"
+vmauth_args="--auth.config=/etc/victoriametrics/vmauth.yml --httpListenAddr=':8427'"
 
 
 # Uncomment both lines if you want logs to go to syslog

@@ -8,8 +8,8 @@ description_reload="Reload the vmauth configuration."
 command=/usr/bin/vmauth
 command_user=victoriametrics:victoriametrics
 command_background=yes
-pidfile="/run/$RC_SVCNAME.pid"
-command_args="${vmauth_args} --auth.config=/etc/victoriametrics/vmauth.yml --loggerDisableTimestamps --loggerOutput=stdout"
+pidfile="/run/${RC_SVCNAME}.pid"
+command_args="${vmauth_args} --loggerDisableTimestamps --loggerOutput=stdout"
 extra_started_commands="reload"
 
 depend() {
@@ -24,7 +24,7 @@ start_pre() {
 }
 
 reload() {
-	ebegin "Reload vmauth"
+	ebegin "Reload ${RC_SVCNAME}"
 	start-stop-daemon --signal SIGHUP --pidfile "${pidfile}"
 	eend $? "Failed to reload vmauth configuration"
 
