@@ -43,5 +43,5 @@ src_install() {
 	insinto "/etc/victoriametrics"
 	doins "${FILESDIR}/vmauth.yml"
 	insinto "/etc/logrotate.d"
-	newins "${FILESDIR/victoriametrics-cluster.logrotate victoriametrics-cluster"
+	newins "${FILESDIR}/victoriametrics-cluster.logrotate" victoriametrics-cluster
 }
