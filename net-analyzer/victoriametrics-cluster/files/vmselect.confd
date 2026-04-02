@@ -1,8 +1,9 @@
 vmselect_args="--storageNode='127.0.0.1:8401' --cacheDataPath=/var/lib/victoriametrics"
 
-# Uncomment both lines if you want logs to go to syslog
+# Uncomment these lines if you want logs to go to syslog
 #error_logger="logger -t $RC_SVCNAME"
 #rc_need=logger
+#vmselect_args="${vmselect_args} --loggerDisableTimestamps"
 
 # Uncomment to redirect logs to a log file
 #error_log="/var/log/vmselect.log"

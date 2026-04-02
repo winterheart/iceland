@@ -1,8 +1,9 @@
 vmstorage_args="--storageDataPath=/var/lib/victoriametrics/storage --vminsertAddr=':8400' --vmselectAddr=':8401'"
 
-# Uncomment both lines if you want logs to go to syslog
+# Uncomment these lines if you want logs to go to syslog
 #error_logger="logger -t $RC_SVCNAME"
 #rc_need=logger
+#vmstorage_args="${vmstorage_args} --loggerDisableTimestamps"
 
 # Uncomment to redirect logs to a log file
 #error_log="/var/log/vmstorage.log"

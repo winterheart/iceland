@@ -9,7 +9,7 @@ command=/usr/bin/vmauth
 command_user=victoriametrics:victoriametrics
 command_background=yes
 pidfile="/run/${RC_SVCNAME}.pid"
-command_args="${vmauth_args} --loggerDisableTimestamps --loggerOutput=stdout"
+command_args="${vmauth_args}"
 extra_started_commands="reload"
 
 depend() {

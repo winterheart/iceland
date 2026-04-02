@@ -10,7 +10,7 @@ command_user=victoriametrics:victoriametrics
 command_background=yes
 
 pidfile="/run/${RC_SVCNAME}.pid"
-command_args="${vmstorage_args} --loggerDisableTimestamps --loggerOutput=stdout"
+command_args="${vmstorage_args}"
 extra_started_commands="reload"
 
 depend() {

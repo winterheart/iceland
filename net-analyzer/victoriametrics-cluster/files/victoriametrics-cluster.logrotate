@@ -1,0 +1,10 @@
+/var/log/vmauth*.log /var/log/vmsinsert*.log /var/log/vmselect*.log /var/log/vmstorage*.log {
+        daily
+        missingok
+        rotate 7
+        compress
+        delaycompress
+        notifempty
+        copytruncate
+}
+
