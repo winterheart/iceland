@@ -1,4 +1,7 @@
-vmagent_args="--remoteWrite.tmpDataPath=/var/lib/victoriametrics/vmagent-remotewrite-data"
+vmagent_args=""
+
+# Path for temp data
+# vmagent_tmp_datapath=/var/lib/victoriametrics/vmagent-remotewrite-data
 
 # Uncomment both lines if you want logs to go to syslog
 #error_logger="logger -t $RC_SVCNAME"
