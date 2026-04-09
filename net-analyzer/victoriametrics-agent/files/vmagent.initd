@@ -12,7 +12,7 @@ command_background=yes
 pidfile="/run/${RC_SVCNAME}.pid"
 vmagent_tmp_datapath=${vmagent_tmp_datapath:-/var/lib/victoriametrics/vmagent-remotewrite-data}
 
-command_args="${vminsert_args} --remoteWrite.tmpDataPath=${vmagent_tmp_datapath} --loggerDisableTimestamps --loggerOutput=stdout"
+command_args="${vmagent_args} --remoteWrite.tmpDataPath=${vmagent_tmp_datapath} --loggerDisableTimestamps --loggerOutput=stdout"
 extra_started_commands="reload"
 
 depend() {
