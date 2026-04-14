@@ -11,6 +11,7 @@ command_background=yes
 pidfile="/run/${RC_SVCNAME}.pid"
 command_args="${vmauth_args}"
 extra_started_commands="reload"
+retry="SIGTERM/60/SIGKILL/5"
 
 depend() {
 	need net
