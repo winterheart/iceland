@@ -1,0 +1,10 @@
+/var/log/vmagent*.log {
+        daily
+        missingok
+        rotate 7
+        compress
+        delaycompress
+        notifempty
+        copytruncate
+}
+

@@ -25,7 +25,7 @@ src_compile() {
 	local bin=( vmagent )
 	for i in "${bin[@]}" ; do
 		CGO_ENABLED=1 ego build \
-			-ldflags "-X 'github.com/VictoriaMetrics/VictoriaMetrics/lib/buildinfo.Version=${PV}'" \
+			-ldflags "-X 'github.com/VictoriaMetrics/VictoriaMetrics/lib/buildinfo.Version=$i-v${PV}'" \
 			-o bin/${i} github.com/VictoriaMetrics/VictoriaMetrics/app/${i}
 	done
 }
@@ -39,4 +39,6 @@ src_install() {
 		newinitd "${FILESDIR}/${i}.initd" "${i}"
 		newconfd "${FILESDIR}/${i}.confd" "${i}"
 	done
+	insinto "/etc/logrotate.d"
+	newins "${FILESDIR}/victoriametrics-agent.logrotate" victoriametrics-agent
 }
