@@ -1,0 +1,6 @@
+# seaweedfs options
+
+WEED_EXEC="master"
+# See `weed master -h` for available options
+WEED_OPTS="-mdir=/var/lib/seaweedfs/metadata -port=9333"
+

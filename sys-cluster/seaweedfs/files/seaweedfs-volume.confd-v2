@@ -1,0 +1,6 @@
+# SeaweedFS Volume service options
+WEED_EXEC="volume"
+
+# See `weed volume --help`
+WEED_OPTS="-dir=/var/lib/seaweedfs/disk1 -mserver=localhost:9333"
+

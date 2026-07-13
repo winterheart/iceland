@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+# Copyright 2023 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+supervisor=supervise-daemon
+
+respawn_delay="5"
+respawn_max="10"
+respawn_period="60"
+
+name=weed-filer
+command="/usr/bin/weed"
+command_args="${WEED_EXEC} ${WEED_OPTS}"
+
+pidfile="/var/run/${RC_SVCNAME}.pid"
+
+depend() {
+	need net
+}

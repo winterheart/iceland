@@ -1,0 +1,6 @@
+# seaweedfs options
+
+WEED_EXEC="worker"
+# See `weed worker -h` for available options
+WEED_OPTS="-admin=localhost:23646 -workingDir=/var/lib/seaweedfs-worker"
+

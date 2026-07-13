@@ -1,0 +1,6 @@
+# seaweedfs options
+
+WEED_EXEC="admin"
+# See `weed filer -h` for available options
+WEED_OPTS="-port=23646 -master=localhost:9333 -dataDir=/var/lib/seaweedfs-admin"
+
