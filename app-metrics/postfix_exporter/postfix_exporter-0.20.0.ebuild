@@ -20,6 +20,7 @@ KEYWORDS="~amd64"
 IUSE="systemd"
 RESTRICT+=" test"
 
+BDEPEND=">=dev-lang/go-1.26.0"
 RDEPEND="
 	acct-group/postfix_exporter
 	acct-user/postfix_exporter
